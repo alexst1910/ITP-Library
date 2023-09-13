@@ -1,7 +1,7 @@
 //import 'bootstrap/dist/css/bootstrap.css';
 
 import { NavLink } from "react-router-dom";
-import classes from "../components/MainNavigation.module.css";
+import classes from "../Navigation/MainNavigation.module.css";
 const MainNavigation = () => {
   return (
     <div className="container">

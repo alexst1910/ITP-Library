@@ -1,5 +1,5 @@
-import Footer from "../components/Footer";
-import MainNavigation from "../components/MainNavigation";
+import Footer from "../components/Footer/Footer";
+import MainNavigation from "../components/Navigation/MainNavigation";
 import { Outlet } from "react-router-dom";
 const Root = () => {
   return (
