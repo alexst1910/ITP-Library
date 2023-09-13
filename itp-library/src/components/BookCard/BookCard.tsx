@@ -2,13 +2,8 @@ import cover from "../../images/the-mind-of-a-leader-cover.jpg";
 import classes from "../BookCard/BookCard.module.css";
 const BookCard = () => {
   return (
-    <div className="card">
-      <img
-        className="card-img-top"
-        alt=""
-        src={cover}
-        style={{ width: "15rem" }}
-      />
+    <div className="card" style={{ width: "16rem" }}>
+      <img className="card-img-top" alt="" src={cover} />
       <div className="card-body sm">
         <h5 className="card-title">
           <span className={classes.lora}>The mind of a leader</span>
