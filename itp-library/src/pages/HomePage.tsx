@@ -1,6 +1,10 @@
-import React from "react";
+import BookCards from "../components/BookList/BookCards";
 
 const HomePage: React.FC = () => {
-  return <></>;
+  return (
+    <div className="container mx-auto">
+      <BookCards />
+    </div>
+  );
 };
 export default HomePage;

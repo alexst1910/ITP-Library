@@ -9,21 +9,26 @@ const BookCard = (props: {
 }) => {
   return (
     <div className={`card ${classes.lora} border-0`}>
-      <img className="card-img-top rounded-0" alt="" src={`${props.cover}`} />
-      <div className="card-body">
+      <img
+        className={`card-img-top rounded-0 mb-3`}
+        alt=""
+        src={props.cover}
+        style={{ width: "13rem", height: "20rem" }}
+      />
+      <div className="card-body p-0">
         <h5 className="card-title">
           <span className={classes.title}>{props.title}</span>
         </h5>
         <h6
           className="card-subtitle mb-2 text-muted"
-          style={{ color: "#C6B800" }}
+          style={{ color: classes.gold }}
         >
           {props.price}
         </h6>
         <p className="card-text">
           <span className={classes.description}>{props.author}</span>
         </p>
-        <button className="btn btn-dark w-100">
+        <button className="btn btn-dark" style={{ width: "80%" }}>
           <span className={classes.buttontext}>Add to cart</span>
         </button>
       </div>
