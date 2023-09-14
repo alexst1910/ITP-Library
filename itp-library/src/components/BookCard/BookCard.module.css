@@ -1,20 +1,18 @@
 .lora {
   font-family: "Lora";
   font-weight: bold;
+  width: 16rem;
+  letter-spacing: 0;
+}
+
+.title {
   color: #000000;
   letter-spacing: 0;
 }
-
 .description {
-  font-family: "Lora";
-  font-weight: bold;
   color: #939393;
-  letter-spacing: 0;
 }
 
 .buttontext {
-  font-family: "Lora";
-  font-weight: bold;
   color: #ffffff;
-  letter-spacing: 0;
 }

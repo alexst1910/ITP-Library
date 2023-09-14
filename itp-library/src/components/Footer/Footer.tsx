@@ -1,7 +1,7 @@
 const Footer = () => {
   let copyright = String.fromCodePoint(169);
   return (
-    <div className="container bg-secondary text-light">
+    <div className="container text-light bg-secondary">
       {copyright} Copyright IT Perspectives
     </div>
   );
