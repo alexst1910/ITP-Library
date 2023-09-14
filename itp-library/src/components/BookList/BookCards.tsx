@@ -37,7 +37,7 @@ const books: Book[] = [
     cover: cover_4,
   },
   {
-    id: 4,
+    id: 5,
     title: "Educated",
     price: "$70",
     author: "Tara Westover",
