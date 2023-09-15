@@ -1,9 +1,16 @@
-import BookCards from "../components/BookList/BookCards";
+import BookList from "../components/BookList/BookList";
+import {
+  BestBooks,
+  SectionOne,
+  RecentBooks,
+  SectionTwo,
+} from "../assets/BookDetails";
 
 const HomePage: React.FC = () => {
   return (
     <div className="container mx-auto">
-      <BookCards />
+      <BookList cards={BestBooks} section={SectionOne} />
+      <BookList cards={RecentBooks} section={SectionTwo} />
     </div>
   );
 };
