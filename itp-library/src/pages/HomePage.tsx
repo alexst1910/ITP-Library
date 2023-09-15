@@ -8,7 +8,7 @@ import {
 
 const HomePage: React.FC = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container">
       <BookList cards={BestBooks} section={SectionOne} />
       <BookList cards={RecentBooks} section={SectionTwo} />
     </div>

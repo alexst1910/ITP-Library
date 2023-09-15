@@ -4,8 +4,9 @@ import Book from "../../interfaces/book";
 //props.cards is an array of object where each object is a book with properties
 const BookList = (props: { cards: Book[]; section: string }) => {
   return (
-    <>
-      <div className="mt-5 my-4 ps-4 ms-2 fs-4">{props.section}</div>
+    <div className="row">
+      <div className="my-4 fs-4">{props.section}</div>
+
       <ul className="card-group">
         {props.cards.map((card) => {
           return (
@@ -19,7 +20,7 @@ const BookList = (props: { cards: Book[]; section: string }) => {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

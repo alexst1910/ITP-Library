@@ -48,13 +48,13 @@ export const BestBooks: Book[] = [
     author: "Tara Westover",
     cover: cover_5,
   },
-  //   {
-  //     id: 6,
-  //     title: "The hypocrite world",
-  //     price: "$55",
-  //     author: "Sophia Hill",
-  //     cover: cover_6,
-  //   },
+  {
+    id: 6,
+    title: "The hypocrite world",
+    price: "$55",
+    author: "Sophia Hill",
+    cover: cover_6,
+  },
 ];
 
 export const RecentBooks: Book[] = [
@@ -94,13 +94,13 @@ export const RecentBooks: Book[] = [
     author: "William Wallburgh",
     cover: cover_11,
   },
-  //   {
-  //     id: 6,
-  //     title: "Annihilation",
-  //     price: "$77",
-  //     author: "Jeff Vandermeer",
-  //     cover: cover_12,
-  //   },
+  {
+    id: 6,
+    title: "Annihilation",
+    price: "$77",
+    author: "Jeff Vandermeer",
+    cover: cover_12,
+  },
 ];
 export const SectionOne: string = "Best books of the month";
 export const SectionTwo: string = "Recently added";
