@@ -4,7 +4,6 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
-import CarouselPage from "./pages/CarouselPage";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +17,6 @@ const router = createBrowserRouter([
 
       {
         //other paths to be added
-        path: "/carousel",
-        element: <CarouselPage />,
       },
     ],
   },

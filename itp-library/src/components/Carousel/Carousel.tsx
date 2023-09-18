@@ -1,43 +1,61 @@
-import landscape_1 from "../../images/landscape-1.jpg";
-import landscape_2 from "../../images/landscape-2.jpg";
-import landscape_3 from "../../images/landscape-3.jpg";
+import CarouselItemData from "../../interfaces/carouselItemData";
+import CarouselItem from "../CarouselItem/CarouselItem";
 
-const Carousel = () => {
+const Carousel = (props: { items: CarouselItemData[] }) => {
   return (
     <div
-      id="carouselExampleControls"
+      id="carouselExampleIndicators"
       className="carousel slide"
-      data-bs-ride="carousel"
+      data-bs-ride="true"
     >
+      <div className="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          className="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src={landscape_1} className="d-block w-100" alt="..." />
-        </div>
-        <div className="carousel-item">
-          <img src={landscape_2} className="d-block w-100" alt="..." />
-        </div>
-        <div className="carousel-item">
-          <img src={landscape_3} className="d-block w-100" alt="..." />
+          {props.items.map((item) => {
+            return (
+              <CarouselItem
+                key={item.id}
+                title={item.title}
+                description={item.description}
+                cover={item.cover}
+              />
+            );
+          })}
         </div>
       </div>
       <button
         className="carousel-control-prev"
         type="button"
-        data-bs-target="#carouselExampleControls"
+        data-bs-target="#carouselExampleIndicators"
         data-bs-slide="prev"
-      >
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
+      ></button>
       <button
         className="carousel-control-next"
         type="button"
-        data-bs-target="#carouselExampleControls"
+        data-bs-target="#carouselExampleIndicators"
         data-bs-slide="next"
-      >
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
+      ></button>
     </div>
   );
 };

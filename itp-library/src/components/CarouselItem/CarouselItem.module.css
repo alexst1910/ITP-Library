@@ -1,0 +1,28 @@
+.item {
+  background-color: #d5d4d0;
+  height: 600px;
+  display: grid;
+  align-items: center;
+  font-family: "Lora";
+  font-size: 64px;
+  font-weight: bold;
+  letter-spacing: 0;
+}
+
+.description {
+  font-family: "Roboto";
+  font-size: 16px;
+  letter-spacing: 0;
+  padding-bottom: 60px;
+}
+
+.image {
+  width: 90%;
+  height: 350px;
+  border-radius: 10%;
+}
+
+.text {
+  display: grid;
+  align-items: center;
+}
