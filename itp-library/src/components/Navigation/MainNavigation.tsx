@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import classes from "../Navigation/MainNavigation.module.css";
 const MainNavigation = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container">
       <header>
         <nav className="navbar navbar-light justify-content-between">
           <NavLink to="" className="navbar-brand">

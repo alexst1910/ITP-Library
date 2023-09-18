@@ -8,23 +8,12 @@ const BookCard = (props: {
   cover: string;
 }) => {
   return (
-    <div className="col-sm-2 col-lg-3">
-      <div className={`card ${classes.lora} border-0 me-3`}>
-        {/*<img
-        className={`card-img-top rounded-0 mb-3`}
-        alt=""
-        src={props.cover}
-        style={{ width: "13rem", height: "20rem" }}
-  />*/}
+    <div className="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+      <div className={`card ${classes.lora} border-0`}>
         <div
+          className={classes.image}
           style={{
-            width: "100%",
-            height: "400px",
             backgroundImage: `url(${props.cover})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            marginBottom: "2rem",
           }}
         ></div>
         <div className="card-body p-0">
@@ -40,7 +29,7 @@ const BookCard = (props: {
           <p className="card-text">
             <span className={classes.description}>{props.author}</span>
           </p>
-          <button className="btn btn-dark w-100 mb-4">
+          <button className="btn btn-dark w-100">
             <span className={classes.buttontext}>Add to cart</span>
           </button>
         </div>
