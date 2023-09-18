@@ -20,6 +20,9 @@
   width: 90%;
   height: 350px;
   border-radius: 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .text {

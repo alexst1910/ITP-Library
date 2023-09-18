@@ -31,18 +31,18 @@ const Carousel = (props: { items: CarouselItemData[] }) => {
         ></button>
       </div>
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          {props.items.map((item) => {
-            return (
+        {props.items.map((item) => {
+          return (
+            <div className="carousel-item active">
               <CarouselItem
                 key={item.id}
                 title={item.title}
                 description={item.description}
                 cover={item.cover}
               />
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
       <button
         className="carousel-control-prev"

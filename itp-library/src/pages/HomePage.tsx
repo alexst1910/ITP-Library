@@ -7,7 +7,6 @@ import {
   SectionTwo,
 } from "../assets/BookDetails";
 import Carousel from "../components/Carousel/Carousel";
-// import Carousel from "../components/Carousel/Carousel";
 
 const HomePage: React.FC = () => {
   return (
