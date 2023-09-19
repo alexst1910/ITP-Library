@@ -10,7 +10,7 @@ const CarouselItem = (props: {
       className={`container w-100 ${classes.item} col-sm-12 col-md-6 col-lg-3`}
     >
       <div className="row w-100">
-        <div className={`col ${classes.text} mx-5`}>
+        <div className={`col ${classes.text} mx-5 py-5 mt-3`}>
           <h1>{props.title}</h1>
           <p className={classes.description}>{props.description}</p>
         </div>

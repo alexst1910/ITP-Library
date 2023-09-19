@@ -5,37 +5,32 @@ const Carousel = (props: { items: CarouselItemData[] }) => {
   return (
     <div
       id="carouselExampleIndicators"
-      className="carousel slide"
+      className="carousel slide d-none d-lg-block"
       data-bs-ride="true"
     >
       <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
+        {props.items.map((item, index) => {
+          return (
+            <button
+              key={index}
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to={index}
+              className={index === 0 ? "active" : ""}
+              aria-current="true"
+              aria-label={`Slide ${index}`}
+            ></button>
+          );
+        })}
       </div>
       <div className="carousel-inner">
-        {props.items.map((item) => {
+        {props.items.map((item, index) => {
           return (
-            <div className="carousel-item active">
+            <div
+              key={item.id}
+              className={`carousel-item ${index === 0 ? "active" : ""}`}
+            >
               <CarouselItem
-                key={item.id}
                 title={item.title}
                 description={item.description}
                 cover={item.cover}
@@ -50,6 +45,7 @@ const Carousel = (props: { items: CarouselItemData[] }) => {
         data-bs-target="#carouselExampleIndicators"
         data-bs-slide="prev"
       ></button>
+
       <button
         className="carousel-control-next"
         type="button"

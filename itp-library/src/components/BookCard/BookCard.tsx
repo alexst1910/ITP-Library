@@ -8,7 +8,7 @@ const BookCard = (props: {
   cover: string;
 }) => {
   return (
-    <div className="col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <div className="col-sm-6 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
         <div
           className={classes.image}

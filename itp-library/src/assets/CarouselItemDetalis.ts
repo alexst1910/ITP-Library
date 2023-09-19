@@ -1,6 +1,6 @@
 import CarouselItemData from "../interfaces/carouselItemData";
-import libraryCover from "../images/library.jpg";
-import discount from "../images/discount-2.jpg";
+import libraryCover from "../images/library-blob2.jpg";
+import discount from "../images/discount-blob.jpg";
 
 export const carouselData: CarouselItemData[] = [
   {
@@ -16,5 +16,12 @@ export const carouselData: CarouselItemData[] = [
     description:
       "Don't miss the latest offers and discount codes if you have an account",
     cover: discount,
+  },
+  {
+    id: 3,
+    title: "An awesome shopping experience",
+    description:
+      "Explore our website and enjoy using the most interactive online library",
+    cover: libraryCover,
   },
 ];
