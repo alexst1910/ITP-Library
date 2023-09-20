@@ -1,24 +1,29 @@
 import classes from "../BookDetail/BookDetail.module.css";
-import cover from "../../images/the-mind-of-a-leader-cover.jpg";
-const BookDetail = () => {
+
+const BookDetail = (props: {
+  title: string;
+  author: string;
+  price: string;
+  cover: string;
+}) => {
   return (
     <div className={`container ${classes.item}`}>
       <div className="row me-5 mx-5">
         <div className="col-sm-6 col-lg-6 col-md-6 col-xs-0 d-none d-lg-block">
           <div
             className={classes.image}
-            style={{ backgroundImage: `url(${cover})` }}
+            style={{ backgroundImage: `url(${props.cover})` }}
           ></div>
         </div>
         <div className="col-sm-6 pe-5" style={{ height: "600px" }}>
           <div className="d-flex justify-content-between">
             <div className="container">
-              <h1 className={classes.lora}>The mind of a leader</h1>
+              <h1 className={classes.lora}>{props.title}</h1>
               <p className="fs-5">
-                by <b>Kevin Anderson</b>
+                by <b>{props.author}</b>
               </p>
             </div>
-            <h1 className={classes.gold}>$90</h1>
+            <h1 className={classes.gold}>{props.price}</h1>
           </div>
           <div className="container">
             <p>
