@@ -1,6 +1,6 @@
 import CarouselItemData from "../interfaces/carouselItemData";
 import libraryCover from "../images/library-blob2.jpg";
-import discount from "../images/discount-blob.jpg";
+import discount from "../images/magicpattern-blob-1695201745298.png";
 
 export const carouselData: CarouselItemData[] = [
   {

@@ -4,8 +4,8 @@
   display: grid;
   align-items: center;
   font-family: "Lora";
-  font-size: 64px;
   font-weight: bold;
+  font-size: 64px;
   letter-spacing: 0;
 }
 
@@ -13,12 +13,12 @@
   font-family: "Roboto";
   font-size: 16px;
   letter-spacing: 0;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 .image {
   width: 90%;
-  height: 350px;
+  height: 450px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -27,4 +27,5 @@
 .text {
   display: grid;
   align-items: center;
+  margin-left: 90px;
 }
