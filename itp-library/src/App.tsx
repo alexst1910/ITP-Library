@@ -4,6 +4,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
+import BookDetailPage from "./pages/BookDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,8 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/detail",
+        element: <BookDetailPage />,
         //other paths to be added
       },
     ],

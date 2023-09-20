@@ -1,0 +1,26 @@
+.item {
+  height: 879px;
+  display: grid;
+  align-items: center;
+}
+
+.image {
+  width: 50%;
+  height: 470px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-left: 50px;
+}
+.buttontext {
+  color: #ffffff;
+  font-family: "Lora";
+}
+.lora {
+  font-family: "Lora";
+  font-weight: bold;
+  letter-spacing: 0;
+}
+.gold {
+  color: #c69c00;
+}
