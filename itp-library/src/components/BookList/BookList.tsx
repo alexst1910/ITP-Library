@@ -10,15 +10,15 @@ const BookList = (props: { cards: Book[]; section: string }) => {
 
       {props.cards.map((card) => {
         return (
-          <Link to={`detail/${card.id}`}>
+          <>
             <BookCard
-              key={card.id}
+              id={card.id}
               title={card.title}
               price={card.price}
               author={card.author}
               cover={card.cover}
             />
-          </Link>
+          </>
         );
       })}
     </div>

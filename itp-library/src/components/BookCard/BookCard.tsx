@@ -3,6 +3,7 @@ import classes from "../BookCard/BookCard.module.css";
 import { Link } from "react-router-dom";
 
 const BookCard = (props: {
+  id: number;
   title: string;
   price: string;
   author: string;
@@ -11,17 +12,21 @@ const BookCard = (props: {
   return (
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
-        <div
-          className={classes.image}
-          style={{
-            backgroundImage: `url(${props.cover})`,
-          }}
-        ></div>
-
+        {" "}
+        <Link to={`/detail/${props.id}`}>
+          <div
+            className={classes.image}
+            style={{
+              backgroundImage: `url(${props.cover})`,
+            }}
+          ></div>
+        </Link>
         <div className="card-body p-0">
-          <h5 className="card-title">
-            <span className={classes.title}>{props.title}</span>
-          </h5>
+          <Link to={`/detail/${props.id}`} style={{ textDecoration: "none" }}>
+            <h5 className="card-title">
+              <span className={classes.title}>{props.title}</span>
+            </h5>
+          </Link>
           <h6 className={`card-subtitle mb-2 text-muted ${classes.gold}`}>
             {props.price}
           </h6>
