@@ -1,5 +1,6 @@
 import BookCard from "../BookCard/BookCard";
 import Book from "../../interfaces/book";
+import { Link } from "react-router-dom";
 
 //props.cards is an array of object where each object is a book with properties
 const BookList = (props: { cards: Book[]; section: string }) => {
@@ -9,13 +10,15 @@ const BookList = (props: { cards: Book[]; section: string }) => {
 
       {props.cards.map((card) => {
         return (
-          <BookCard
-            key={card.id}
-            title={card.title}
-            price={card.price}
-            author={card.author}
-            cover={card.cover}
-          />
+          <Link to={`detail/${card.id}`}>
+            <BookCard
+              key={card.id}
+              title={card.title}
+              price={card.price}
+              author={card.author}
+              cover={card.cover}
+            />
+          </Link>
         );
       })}
     </div>

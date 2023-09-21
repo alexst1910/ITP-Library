@@ -11,14 +11,13 @@ const BookCard = (props: {
   return (
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
-        <Link to="/detail">
-          <div
-            className={classes.image}
-            style={{
-              backgroundImage: `url(${props.cover})`,
-            }}
-          ></div>
-        </Link>
+        <div
+          className={classes.image}
+          style={{
+            backgroundImage: `url(${props.cover})`,
+          }}
+        ></div>
+
         <div className="card-body p-0">
           <h5 className="card-title">
             <span className={classes.title}>{props.title}</span>
