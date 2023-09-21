@@ -13,7 +13,7 @@ const BookCard = (props: {
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
         {" "}
-        <Link to={`/detail/${props.id}`}>
+        <Link to={`/detail/best/${props.id}`}>
           <div
             className={classes.image}
             style={{

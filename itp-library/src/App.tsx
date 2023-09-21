@@ -4,7 +4,8 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
-import BookDetailPage from "./pages/BookDetailPage";
+import BestBookDetailPage from "./pages/BookDetailPages/BestBookDetailPage";
+import RecentBookDetailPage from "./pages/BookDetailPages/RecentBookDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,13 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/detail/:id",
-        element: <BookDetailPage />,
+        path: "/detail/best/:id",
+        element: <BestBookDetailPage />,
+        //other paths to be added
+      },
+      {
+        path: "/detail/recent/:id",
+        element: <RecentBookDetailPage />,
         //other paths to be added
       },
     ],
