@@ -59,14 +59,14 @@ export const BestBooks: Book[] = [
 
 export const RecentBooks: Book[] = [
   {
-    id: 1,
+    id: 7,
     title: "Lifting Orbits",
     price: "$45",
     author: "Carissa Pacheco",
     cover: cover_7,
   },
   {
-    id: 2,
+    id: 8,
     title: "Stand Out",
     price: "$63",
     author: "John Lemon",
@@ -74,28 +74,28 @@ export const RecentBooks: Book[] = [
   },
 
   {
-    id: 3,
+    id: 9,
     title: "Story Craft",
     price: "$53",
     author: "Jack Hart",
     cover: cover_9,
   },
   {
-    id: 4,
+    id: 10,
     title: "Tess Of The Road",
     price: "$68",
     author: "Rachel Hartman",
     cover: cover_10,
   },
   {
-    id: 5,
+    id: 11,
     title: "The Black Woods",
     price: "$76",
     author: "William Wallburgh",
     cover: cover_11,
   },
   {
-    id: 6,
+    id: 12,
     title: "Annihilation",
     price: "$77",
     author: "Jeff Vandermeer",
