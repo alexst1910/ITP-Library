@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cover from "../../images/the-mind-of-a-leader-cover.jpg";
 import classes from "../ShoppingCartItem/ShoppingCartItem.module.css";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
+import { BestBooks, RecentBooks } from "../../assets/BookDetails";
 const ShoppingCartItem = () => {
   return (
     <div className="row d-flex  justify-content-between">
@@ -18,7 +18,7 @@ const ShoppingCartItem = () => {
           </p>
         </div>
       </div>
-      <div className="col d-flex pe-5 justify-content-end">
+      <div className="col d-flex  justify-content-end">
         <div>
           <h3 className={`${classes.gold} ps-5 m-0`}>$90</h3>
 
@@ -36,6 +36,7 @@ const ShoppingCartItem = () => {
           </button>
         </div>
       </div>
+      <hr className="mt-4"></hr>
     </div>
   );
 };
