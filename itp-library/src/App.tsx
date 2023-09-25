@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
+import ShoppingCart from "./pages/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         path: "/detail/:id",
         element: <BookDetailPage />,
         //other paths to be added
+      },
+      {
+        path: "/cart",
+        element: <ShoppingCart />,
       },
     ],
   },
