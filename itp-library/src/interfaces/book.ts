@@ -1,7 +1,7 @@
 interface Book {
   id: number;
   title: string;
-  price: string;
+  price: number;
   author: string;
   cover: string;
 }

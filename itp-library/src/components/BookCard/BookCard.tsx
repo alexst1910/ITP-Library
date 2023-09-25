@@ -1,11 +1,12 @@
 //import cover from "../../images/the-mind-of-a-leader-cover.jpg";
 import classes from "../BookCard/BookCard.module.css";
 import { Link } from "react-router-dom";
+import { formatCurrency } from "../../utilities/formatCurrency";
 
 const BookCard = (props: {
   id: number;
   title: string;
-  price: string;
+  price: number;
   author: string;
   cover: string;
 }) => {
@@ -28,7 +29,7 @@ const BookCard = (props: {
             </h5>
           </Link>
           <h6 className={`card-subtitle mb-2 text-muted ${classes.gold}`}>
-            {props.price}
+            {formatCurrency(props.price)}
           </h6>
           <p className="card-text">
             <span className={classes.description}>{props.author}</span>

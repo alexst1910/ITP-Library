@@ -1,9 +1,10 @@
 import classes from "../BookDetail/BookDetail.module.css";
+import { formatCurrency } from "../../utilities/formatCurrency";
 
 const BookDetail = (props: {
   title: string;
   author: string;
-  price: string;
+  price: number;
   cover: string;
 }) => {
   return (
@@ -22,7 +23,7 @@ const BookDetail = (props: {
               by <b>{props.author}</b>
             </p>
           </div>
-          <h1 className={classes.gold}>{props.price}</h1>
+          <h1 className={classes.gold}>{formatCurrency(props.price)}</h1>
         </div>
         <div>
           <p>
