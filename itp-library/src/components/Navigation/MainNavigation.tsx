@@ -22,17 +22,16 @@ const MainNavigation = () => {
             <h2 className={classNamees.title}>ITP Library</h2>
           </NavLink>
 
-          <button
-            className="navbar-toggler ms-auto d-none d-sm-block border-0 d-lg-none"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarToggleExternalContent3"
+          <a
+            className="btn ms-auto d-block border-0 d-lg-none p-0"
+            role="button"
+            data-bs-toggle="collapse"
+            href="#navbarToggleExternalContent3"
             aria-controls="navbarToggleExternalContent3"
             aria-expanded="false"
-            aria-label="Toggle navigation"
           >
             <FontAwesomeIcon icon={faBars} className={classNamees.hamburger} />
-          </button>
+          </a>
 
           <ul className="nav justify-content-end d-none d-lg-inline-flex">
             <li className="nav-item">
@@ -70,14 +69,40 @@ const MainNavigation = () => {
           </ul>
         </nav>
         <div className="collapse" id="navbarToggleExternalContent3">
-          <div className="bg-light shadow-3 p-4">
-            <button className="btn btn-link btn-block border-bottom m-0">
-              Link 1
+          <div className="bg-light shadow-3 p-4 d-flex flex-column d-lg-none">
+            <button className="btn  m-0">
+              <NavLink to="" className="nav-link">
+                <FontAwesomeIcon icon={faHouse} className={classNamees.icon} />
+                <span className={classNamees.item}>HOME</span>
+              </NavLink>
             </button>
-            <button className="btn btn-link btn-block border-bottom m-0">
-              Link 2
+            <button className="btn  btn-block  m-0">
+              <NavLink to="" className="nav-link">
+                {" "}
+                <FontAwesomeIcon
+                  icon={faCartShopping}
+                  className={classNamees.icon}
+                />
+                <span className={classNamees.item}>SHOPPING CART</span>
+              </NavLink>
             </button>
-            <button className="btn btn-link btn-block m-0">Link 3</button>
+            <button className="btn  btn-block m-0">
+              <NavLink to="" className="nav-link">
+                {" "}
+                <FontAwesomeIcon
+                  icon={faTruckFast}
+                  className={classNamees.icon}
+                />
+                <span className={classNamees.item}>ORDERS</span>
+              </NavLink>
+            </button>
+            <button className="btn  btn-block m-0">
+              <NavLink to="" className="nav-link">
+                {" "}
+                <FontAwesomeIcon icon={faUser} className={classNamees.icon} />
+                <span className={classNamees.item}>LOGIN</span>
+              </NavLink>
+            </button>
           </div>
         </div>
       </header>
