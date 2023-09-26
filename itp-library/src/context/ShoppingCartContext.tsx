@@ -46,8 +46,10 @@ import Book from "../interfaces/book";
 
 type ShoppingCartContextProps = {
   addToCart: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  //removeFromCart: (id: number) => void;
   cartItems: { [key: number]: number };
+  getTotal: () => number;
+  cartAmount: () => number;
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -71,13 +73,39 @@ export const ShoppingCartProvider = ({
   const addToCart = (id: number) => {
     setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   };
-  const removeFromCart = (id: number) => {
-    setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
+  // const removeFromCart = (id: number) => {
+  //   setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
+  // };
+
+  const cartAmount = () => {
+    let amount = 0;
+    for (const itemId in cartItems) {
+      if (cartItems[itemId] > 0) {
+        let itemInfo = allBooks.find((item) => item.id === Number(itemId))!;
+        if (itemInfo) {
+          amount += cartItems[itemId];
+        }
+      }
+    }
+    return amount;
   };
+  const getTotal = () => {
+    let total = 0;
+    for (const itemId in cartItems) {
+      if (cartItems[itemId] > 0) {
+        let itemInfo = allBooks.find((item) => item.id === Number(itemId))!;
+        if (itemInfo) {
+          total += cartItems[itemId] * itemInfo?.price;
+        }
+      }
+    }
+    return total;
+  };
+
   console.log(cartItems);
   return (
     <ShoppingCartContext.Provider
-      value={{ addToCart, removeFromCart, cartItems }}
+      value={{ addToCart, cartItems, getTotal, cartAmount }}
     >
       {children}
     </ShoppingCartContext.Provider>

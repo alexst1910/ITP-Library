@@ -1,13 +1,13 @@
 import ShoppingCartItem from "../components/ShoppingCartItem/ShoppingCartItem";
 import classes from "../pages/ShoppingCart.module.css";
-import { BestBooks, RecentBooks } from "../assets/BookDetails";
-import { useParams } from "react-router-dom";
 import { allBooks } from "../assets/allBooks";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
 import { useContext } from "react";
-
+import { Link } from "react-router-dom";
 const ShoppingCart = () => {
-  const { cartItems } = useContext(ShoppingCartContext);
+  const { cartItems, getTotal } = useContext(ShoppingCartContext);
+  const total = getTotal();
+
   return (
     <div className={`container ${classes.item} `}>
       <div className={`fs-4 ${classes.lora} mt-5`}>Your Products</div>
@@ -25,6 +25,30 @@ const ShoppingCart = () => {
           );
         }
       })}
+      <div className="container d-flex justify-content-between">
+        <div className={`fs-4 ${classes.lora}`}>
+          <div className="mb-4">Total: </div>
+          <div>
+            {" "}
+            <Link to="">
+              <button className="btn border-dark" style={{ width: "200px" }}>
+                <span className={classes.buttontext}>Continue shopping</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className={`fs-4 ${classes.lora}`}>
+          <div className={`mb-4 d-flex justify-content-end ${classes.gold}`}>
+            ${total}
+          </div>
+          <div>
+            {" "}
+            <button className="btn btn-dark" style={{ width: "200px" }}>
+              Place Order
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

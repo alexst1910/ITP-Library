@@ -1,7 +1,7 @@
 //import 'bootstrap/dist/css/bootstrap.css';
 
 import { NavLink } from "react-router-dom";
-import classNamees from "../Navigation/MainNavigation.module.css";
+import classes from "../Navigation/MainNavigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouse,
@@ -11,15 +11,18 @@ import {
   faBook,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 const MainNavigation = () => {
+  const { cartAmount } = useContext(ShoppingCartContext);
+  const amount = cartAmount();
   return (
     <div className="container">
       <header>
         <nav className="navbar navbar-light justify-content-between">
           <NavLink to="" className="navbar-brand d-flex align-items-center">
-            <FontAwesomeIcon icon={faBook} className={classNamees.logo} />
-            <h2 className={classNamees.title}>ITP Library</h2>
+            <FontAwesomeIcon icon={faBook} className={classes.logo} />
+            <h2 className={classes.title}>ITP Library</h2>
           </NavLink>
 
           <a
@@ -30,40 +33,45 @@ const MainNavigation = () => {
             aria-controls="navbarToggleExternalContent3"
             aria-expanded="false"
           >
-            <FontAwesomeIcon icon={faBars} className={classNamees.hamburger} />
+            <FontAwesomeIcon icon={faBars} className={classes.hamburger} />
           </a>
 
           <ul className="nav justify-content-end d-none d-lg-inline-flex">
             <li className="nav-item">
               <NavLink to="" className="nav-link">
-                <FontAwesomeIcon icon={faHouse} className={classNamees.icon} />
-                <span className={classNamees.item}>HOME</span>
+                <FontAwesomeIcon icon={faHouse} className={classes.icon} />
+                <span className={classes.item}>HOME</span>
               </NavLink>
             </li>
 
             <li className="nav-item">
+              {amount > 0 && (
+                <span
+                  className={`position-absolute top-10 translate-middle badge rounded-pill bg-danger ${classes.badge}`}
+                >
+                  {amount}
+                </span>
+              )}
+
               <NavLink to="/cart" className="nav-link">
                 <FontAwesomeIcon
                   icon={faCartShopping}
-                  className={classNamees.icon}
+                  className={classes.icon}
                 />
-                <span className={classNamees.item}>SHOPPING CART</span>
+                <span className={classes.item}>SHOPPING CART</span>
               </NavLink>
             </li>
 
             <li className="nav-item">
               <NavLink to="" className="nav-link">
-                <FontAwesomeIcon
-                  icon={faTruckFast}
-                  className={classNamees.icon}
-                />
-                <span className={classNamees.item}>ORDERS</span>
+                <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
+                <span className={classes.item}>ORDERS</span>
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink to="" className="nav-link">
-                <FontAwesomeIcon icon={faUser} className={classNamees.icon} />
-                <span className={classNamees.item}>LOGIN</span>
+                <FontAwesomeIcon icon={faUser} className={classes.icon} />
+                <span className={classes.item}>LOGIN</span>
               </NavLink>
             </li>
           </ul>
@@ -72,8 +80,8 @@ const MainNavigation = () => {
           <div className="bg-light shadow-3 p-4 d-flex flex-column d-lg-none">
             <button className="btn  m-0">
               <NavLink to="" className="nav-link">
-                <FontAwesomeIcon icon={faHouse} className={classNamees.icon} />
-                <span className={classNamees.item}>HOME</span>
+                <FontAwesomeIcon icon={faHouse} className={classes.icon} />
+                <span className={classes.item}>HOME</span>
               </NavLink>
             </button>
             <button className="btn  btn-block  m-0">
@@ -81,26 +89,23 @@ const MainNavigation = () => {
                 {" "}
                 <FontAwesomeIcon
                   icon={faCartShopping}
-                  className={classNamees.icon}
+                  className={classes.icon}
                 />
-                <span className={classNamees.item}>SHOPPING CART</span>
+                <span className={classes.item}>SHOPPING CART</span>
               </NavLink>
             </button>
             <button className="btn  btn-block m-0">
               <NavLink to="" className="nav-link">
                 {" "}
-                <FontAwesomeIcon
-                  icon={faTruckFast}
-                  className={classNamees.icon}
-                />
-                <span className={classNamees.item}>ORDERS</span>
+                <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
+                <span className={classes.item}>ORDERS</span>
               </NavLink>
             </button>
             <button className="btn  btn-block m-0">
               <NavLink to="" className="nav-link">
                 {" "}
-                <FontAwesomeIcon icon={faUser} className={classNamees.icon} />
-                <span className={classNamees.item}>LOGIN</span>
+                <FontAwesomeIcon icon={faUser} className={classes.icon} />
+                <span className={classes.item}>LOGIN</span>
               </NavLink>
             </button>
           </div>

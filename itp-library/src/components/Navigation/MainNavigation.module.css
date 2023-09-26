@@ -28,3 +28,9 @@
 .hamburger {
   color: #000000;
 }
+
+.badge {
+  position: absolute;
+  left: 1060px;
+  top: 20px;
+}
