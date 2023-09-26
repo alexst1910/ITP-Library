@@ -44,12 +44,10 @@ import Book from "../interfaces/book";
 //   );
 // };
 
-export const useShoppingCart = () => {
-  return useContext(ShoppingCartContext);
-};
 type ShoppingCartContextProps = {
   addToCart: (id: number) => void;
   removeFromCart: (id: number) => void;
+  cartItems: { [key: number]: number };
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -78,7 +76,9 @@ export const ShoppingCartProvider = ({
   };
   console.log(cartItems);
   return (
-    <ShoppingCartContext.Provider value={{ addToCart, removeFromCart }}>
+    <ShoppingCartContext.Provider
+      value={{ addToCart, removeFromCart, cartItems }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   );

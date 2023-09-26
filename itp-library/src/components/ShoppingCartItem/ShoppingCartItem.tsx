@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cover from "../../images/the-mind-of-a-leader-cover.jpg";
 import classes from "../ShoppingCartItem/ShoppingCartItem.module.css";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const ShoppingCartItem = (props: {
   id: number;
@@ -10,6 +12,7 @@ const ShoppingCartItem = (props: {
   price: number;
   cover: string;
 }) => {
+  const { removeFromCart } = useContext(ShoppingCartContext);
   return (
     <div className="row d-flex  justify-content-between">
       <div className="col d-flex flex-row">
@@ -26,11 +29,12 @@ const ShoppingCartItem = (props: {
       </div>
       <div className="col d-flex  justify-content-end">
         <div>
-          <h3 className={`${classes.gold} ps-5 m-0`}>{props.price}</h3>
+          <h3 className={`${classes.gold} ps-5 m-0`}>${props.price}</h3>
 
           <button
             type="button"
             className={`btn border-0 ${classes.button} p-0`}
+            onClick={() => removeFromCart}
           >
             <p className="fs-5">
               <FontAwesomeIcon
