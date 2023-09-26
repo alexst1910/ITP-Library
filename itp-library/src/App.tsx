@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
 import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
 import ShoppingCart from "./pages/ShoppingCart";
-import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+// import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,11 +30,7 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return (
-    <ShoppingCartProvider>
-      <RouterProvider router={router} />
-    </ShoppingCartProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

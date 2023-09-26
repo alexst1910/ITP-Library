@@ -42,7 +42,7 @@ const MainNavigation = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink to="" className="nav-link">
+              <NavLink to="/cart" className="nav-link">
                 <FontAwesomeIcon
                   icon={faCartShopping}
                   className={classNamees.icon}

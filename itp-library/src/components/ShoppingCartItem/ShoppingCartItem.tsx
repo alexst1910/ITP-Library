@@ -2,25 +2,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import cover from "../../images/the-mind-of-a-leader-cover.jpg";
 import classes from "../ShoppingCartItem/ShoppingCartItem.module.css";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { BestBooks, RecentBooks } from "../../assets/BookDetails";
-const ShoppingCartItem = () => {
+
+const ShoppingCartItem = (props: {
+  id: number;
+  title: string;
+  author: string;
+  price: number;
+  cover: string;
+}) => {
   return (
     <div className="row d-flex  justify-content-between">
       <div className="col d-flex flex-row">
         <div
           className={classes.image}
-          style={{ backgroundImage: `url(${cover})` }}
+          style={{ backgroundImage: `url(${props.cover})` }}
         ></div>
         <div className="ps-5">
-          <h6 className={classes.lora}>The mind of a leader</h6>
+          <h6 className={classes.lora}>{props.title}</h6>
           <p>
-            by <b>Kevin Anderson</b>
+            by <b>{props.author}</b>
           </p>
         </div>
       </div>
       <div className="col d-flex  justify-content-end">
         <div>
-          <h3 className={`${classes.gold} ps-5 m-0`}>$90</h3>
+          <h3 className={`${classes.gold} ps-5 m-0`}>{props.price}</h3>
 
           <button
             type="button"
