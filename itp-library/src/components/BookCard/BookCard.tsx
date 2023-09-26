@@ -2,7 +2,8 @@
 import classes from "../BookCard/BookCard.module.css";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utilities/formatCurrency";
-// import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { useContext } from "react";
 
 const BookCard = (props: {
   id: number;
@@ -12,6 +13,7 @@ const BookCard = (props: {
   cover: string;
 }) => {
   // const { openCart } = useShoppingCart();
+  const { addToCart } = useContext(ShoppingCartContext);
   return (
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
@@ -36,7 +38,10 @@ const BookCard = (props: {
           <p className="card-text">
             <span className={classes.description}>{props.author}</span>
           </p>
-          <button className="btn btn-dark w-100">
+          <button
+            className="btn btn-dark w-100"
+            onClick={() => addToCart(props.id)}
+          >
             <span className={classes.buttontext}>Add to cart</span>
           </button>
         </div>

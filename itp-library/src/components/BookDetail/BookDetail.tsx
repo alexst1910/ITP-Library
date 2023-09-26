@@ -1,12 +1,14 @@
 import classes from "../BookDetail/BookDetail.module.css";
 import { formatCurrency } from "../../utilities/formatCurrency";
-
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { useContext } from "react";
 const BookDetail = (props: {
   title: string;
   author: string;
   price: number;
   cover: string;
 }) => {
+  const { addToCart } = useContext(ShoppingCartContext);
   return (
     <div className="row me-5 mx-5">
       <div className="col-sm-6 col-lg-6 col-md-6 col-xs-0 d-none d-lg-block">
@@ -43,7 +45,7 @@ const BookDetail = (props: {
           </p>
         </div>
         <div>
-          <button className="btn btn-dark w-50">
+          <button className="btn btn-dark w-50" onClick={() => addToCart}>
             <span className={classes.buttontext}>Add to cart</span>
           </button>
         </div>

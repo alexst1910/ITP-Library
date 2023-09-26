@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import BookDetail from "../../components/BookDetail/BookDetail";
 import classes from "../BookDetailPages/BookDetailPage.module.css";
-import { BestBooks, RecentBooks } from "../../assets/BookDetails";
+import { allBooks } from "../../assets/allBooks";
 const BookDetailPage = () => {
   const { id } = useParams();
-  const allBooks = BestBooks.concat(RecentBooks);
 
   const book = allBooks.find((book) => book.id.toString() === id)!;
 

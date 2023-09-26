@@ -1,4 +1,7 @@
-// import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
+import { allBooks } from "../assets/allBooks";
+import Book from "../interfaces/book";
+
 // import ShoppingCartItem from "../components/ShoppingCartItem/ShoppingCartItem";
 // import ShoppingCart from "../pages/ShoppingCart";
 
@@ -41,7 +44,42 @@
 //   );
 // };
 
-const ShoppingCartContext = () => {
-  return <></>;
+export const useShoppingCart = () => {
+  return useContext(ShoppingCartContext);
 };
-export default ShoppingCartContext;
+type ShoppingCartContextProps = {
+  addToCart: (id: number) => void;
+  removeFromCart: (id: number) => void;
+};
+export const ShoppingCartContext = createContext(
+  {} as ShoppingCartContextProps
+);
+
+type ShoppingCartProviderProps = {
+  children: ReactNode;
+};
+const getDefaultCart = (books: Book[]) => {
+  let cart: { [key: number]: number } = {};
+  for (let i = 1; i < books.length + 1; i++) {
+    cart[i] = 0;
+  }
+  return cart;
+};
+export const ShoppingCartProvider = ({
+  children,
+}: ShoppingCartProviderProps) => {
+  const [cartItems, setCartItems] = useState(getDefaultCart(allBooks));
+
+  const addToCart = (id: number) => {
+    setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
+  };
+  const removeFromCart = (id: number) => {
+    setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
+  };
+  console.log(cartItems);
+  return (
+    <ShoppingCartContext.Provider value={{ addToCart, removeFromCart }}>
+      {children}
+    </ShoppingCartContext.Provider>
+  );
+};
