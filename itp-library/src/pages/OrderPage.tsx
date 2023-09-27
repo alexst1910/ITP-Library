@@ -5,12 +5,14 @@ const OrderPage = () => {
   return (
     <div className={`container ${classes.item}`}>
       <div className="row">
-        <div className="col position-relative">
-          <div
-            className={`${classes.image}`}
-            style={{ backgroundImage: `url(${cover})` }}
-          ></div>
-          <div className={`${classes.square}`}></div>
+        <div className="col">
+          <div className="position-relative d-none d-lg-block">
+            <div
+              className={`${classes.image}`}
+              style={{ backgroundImage: `url(${cover})` }}
+            ></div>
+            <div className={`${classes.square}`}></div>
+          </div>
         </div>
 
         <div className="col">

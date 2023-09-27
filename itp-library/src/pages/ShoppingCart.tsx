@@ -46,9 +46,11 @@ const ShoppingCart = () => {
           </div>
           <div>
             {" "}
-            <button className="btn btn-dark" style={{ width: "200px" }}>
-              Place Order
-            </button>
+            <Link to="/order">
+              <button className="btn btn-dark" style={{ width: "200px" }}>
+                Place Order
+              </button>
+            </Link>
           </div>
         </div>
       </div>
