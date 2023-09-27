@@ -11,20 +11,23 @@ const ShoppingCart = () => {
   return (
     <div className={`container ${classes.item} `}>
       <div className={`fs-4 ${classes.lora} mt-5`}>Your Products</div>
-      {allBooks.map((item) => {
-        if (cartItems[item.id] !== 0) {
-          return (
-            <ShoppingCartItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              author={item.author}
-              price={item.price}
-              cover={item.cover}
-            />
-          );
-        }
-      })}
+      <div>
+        {allBooks.map((item) => {
+          if (cartItems[item.id] !== 0) {
+            return (
+              <ShoppingCartItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                author={item.author}
+                price={item.price}
+                cover={item.cover}
+              />
+            );
+          }
+        })}
+      </div>
+
       <div className="container d-flex justify-content-between">
         <div className={`fs-4 ${classes.lora}`}>
           <div className="mb-4">Total: </div>

@@ -43,7 +43,7 @@ const ShoppingCartItem = (props: {
           </button>
         </div>
       </div>
-      <hr className="mt-4 mb-0"></hr>
+      <hr className="mt-4"></hr>
     </div>
   );
 };
