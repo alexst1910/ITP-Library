@@ -1,0 +1,28 @@
+.item {
+  height: 1200px;
+  display: grid;
+  align-items: start;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.image {
+  width: 70%;
+  height: 470px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  position: absolute;
+  top: 150px;
+}
+
+.square {
+  background-color: #d5d4d0;
+  width: 90%;
+  height: 470px;
+  position: absolute;
+  top: 250px;
+}

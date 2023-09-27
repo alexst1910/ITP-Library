@@ -7,6 +7,7 @@ import Root from "./pages/Root";
 import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import OrderPage from "./pages/OrderPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <ShoppingCart />,
+      },
+      {
+        path: "/order",
+        element: <OrderPage />,
       },
     ],
   },

@@ -1,0 +1,18 @@
+.item {
+  height: 1000px;
+  width: 800px;
+}
+
+.lora {
+  font-family: "Lora";
+  font-weight: bold;
+  letter-spacing: 0;
+  font-size: 35px;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.inputs {
+  width: 730px;
+  margin-left: 20px;
+}
