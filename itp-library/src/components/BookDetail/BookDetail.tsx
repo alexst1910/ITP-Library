@@ -3,6 +3,7 @@ import { formatCurrency } from "../../utilities/formatCurrency";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext } from "react";
 const BookDetail = (props: {
+  id: number;
   title: string;
   author: string;
   price: number;
@@ -45,7 +46,10 @@ const BookDetail = (props: {
           </p>
         </div>
         <div>
-          <button className="btn btn-dark w-50" onClick={() => addToCart}>
+          <button
+            className="btn btn-dark w-50"
+            onClick={() => addToCart(props.id)}
+          >
             <span className={classes.buttontext}>Add to cart</span>
           </button>
         </div>

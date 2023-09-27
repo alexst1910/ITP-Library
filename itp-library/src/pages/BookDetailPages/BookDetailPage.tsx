@@ -10,6 +10,8 @@ const BookDetailPage = () => {
   return (
     <div className={`container ${classes.item}`}>
       <BookDetail
+        key={book.id}
+        id={book.id}
         title={book.title}
         author={book.author}
         price={book.price}

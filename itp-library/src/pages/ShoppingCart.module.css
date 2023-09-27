@@ -1,7 +1,7 @@
 .item {
   height: 870px;
   display: grid;
-  align-items: center;
+  align-items: start;
 }
 
 .lora {

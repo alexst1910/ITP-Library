@@ -46,7 +46,7 @@ import Book from "../interfaces/book";
 
 type ShoppingCartContextProps = {
   addToCart: (id: number) => void;
-  //removeFromCart: (id: number) => void;
+  removeFromCart: (id: number) => void;
   cartItems: { [key: number]: number };
   getTotal: () => number;
   cartAmount: () => number;
@@ -73,9 +73,11 @@ export const ShoppingCartProvider = ({
   const addToCart = (id: number) => {
     setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   };
-  // const removeFromCart = (id: number) => {
-  //   setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
-  // };
+  const removeFromCart = (id: number) => {
+    if (cartItems[id] && cartItems[id] > 0) {
+      setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
+    }
+  };
 
   const cartAmount = () => {
     let amount = 0;
@@ -101,11 +103,10 @@ export const ShoppingCartProvider = ({
     }
     return total;
   };
-
   console.log(cartItems);
   return (
     <ShoppingCartContext.Provider
-      value={{ addToCart, cartItems, getTotal, cartAmount }}
+      value={{ addToCart, cartItems, getTotal, cartAmount, removeFromCart }}
     >
       {children}
     </ShoppingCartContext.Provider>

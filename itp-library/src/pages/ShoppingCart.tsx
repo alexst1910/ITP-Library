@@ -9,7 +9,7 @@ const ShoppingCart = () => {
   const total = getTotal();
 
   return (
-    <div className={`container ${classes.item} `}>
+    <div className={`container ${classes.item}`}>
       <div className={`fs-4 ${classes.lora} mt-5`}>Your Products</div>
       <div>
         {allBooks.map((item) => {
@@ -33,7 +33,7 @@ const ShoppingCart = () => {
           <div className="mb-4">Total: </div>
           <div>
             {" "}
-            <Link to="">
+            <Link to="/">
               <button className="btn border-dark" style={{ width: "200px" }}>
                 <span className={classes.buttontext}>Continue shopping</span>
               </button>

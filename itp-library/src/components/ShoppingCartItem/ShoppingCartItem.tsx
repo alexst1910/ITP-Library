@@ -11,11 +11,13 @@ const ShoppingCartItem = (props: {
   price: number;
   cover: string;
 }) => {
+  const { removeFromCart } = useContext(ShoppingCartContext);
+
   return (
-    <div className="row d-flex  justify-content-between">
-      <div className="col d-flex flex-row">
+    <div className="row d-flex flex-row justify-content-between">
+      <div className="col d-flex flex-row ">
         <div
-          className={`${classes.image} d-none d-md-block`}
+          className={` ${classes.image} d-none d-md-block`}
           style={{ backgroundImage: `url(${props.cover})` }}
         ></div>
         <div className="ps-5">
@@ -32,6 +34,7 @@ const ShoppingCartItem = (props: {
           <button
             type="button"
             className={`btn border-0 ${classes.button} p-0`}
+            onClick={() => removeFromCart(props.id)}
           >
             <p className="fs-5">
               <FontAwesomeIcon
