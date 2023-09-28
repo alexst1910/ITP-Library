@@ -13,8 +13,8 @@ const OrderForm = () => {
               <b>Contact Details</b>
             </label>
           </div>
-          <div className="row">
-            <div className="col col-lg-6 ">
+          <div className="d-flex flex-row">
+            <div>
               <input
                 type="text"
                 id="inputFirstName"
@@ -23,7 +23,7 @@ const OrderForm = () => {
                 style={{ width: "350px" }}
               ></input>
             </div>
-            <div className="col col-lg-6 ">
+            <div>
               <input
                 type="text"
                 id="inputLastName"
