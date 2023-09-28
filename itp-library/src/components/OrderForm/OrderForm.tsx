@@ -5,14 +5,92 @@ import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
+import { useEffect, useState } from "react";
+
 const OrderForm = () => {
+  const [inputFields, setInputFields] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    date: "",
+    select: "",
+    payment: "",
+  });
+
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    date: "",
+    select: "",
+    payment: "",
+  });
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const validateInputs = (inputValues: any) => {
+    let errors = {
+      firstName: "",
+      lastName: "",
+      address: "",
+      phone: "",
+      date: "",
+      select: "",
+      payment: "",
+    };
+    if (inputValues.firstName.length === 0) {
+      errors.firstName = "Please enter your first name";
+    }
+    if (inputValues.lastName.length === 0) {
+      errors.lastName = "Please enter your last name";
+    }
+    if (inputValues.address.length === 0) {
+      errors.address = "Please provide an address";
+    }
+    if (inputValues.phone.length === 0) {
+      errors.phone = "Please provide a phone number";
+    }
+    if (inputValues.phone.length < 10) {
+      errors.phone = "Phone number must have a length of 10";
+    }
+    if (!inputValues.date) {
+      errors.date = "Please enter a date";
+    }
+    if (!inputValues.select) {
+      errors.select = "Please select a country";
+    }
+    if (!inputFields.payment) {
+      errors.payment = "Please enter payment type";
+    }
+    return errors;
+  };
+
+  const handleChange = (e: any) => {
+    setInputFields({ ...inputFields, [e.target!.name]: e.target.value });
+  };
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    setErrors(validateInputs(inputFields));
+    setSubmitting(true);
+  };
+  const finishSubmit = () => {
+    console.log(inputFields);
+  };
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && submitting) {
+      finishSubmit();
+    }
+  }, [errors]);
   return (
     <div
       className={`container ${classes.item} border border-dark-subtle mt-5 rounded-1`}
     >
       <div className={classes.lora}>Order Details</div>
       <div>
-        <form>
+        {" "}
+        <form className="needs-validation" onSubmit={handleSubmit} noValidate>
           <div className="d-flex justify-content-start mt-4 ps-4">
             <label htmlFor="" className="form-label">
               <b>Contact Details</b>
@@ -25,7 +103,12 @@ const OrderForm = () => {
                 placeholder="First Name"
                 width="380px"
                 className="form-control mx-4"
+                value={inputFields.firstName}
+                onChange={handleChange}
               />
+              {errors.firstName ? (
+                <p className="text-danger ms-4">Please enter first name</p>
+              ) : null}
             </div>
             <div>
               <Input
@@ -33,7 +116,12 @@ const OrderForm = () => {
                 placeholder="Last Name"
                 width="370px"
                 className="form-control mx-4"
+                value={inputFields.lastName}
+                onChange={handleChange}
               />
+              {errors.lastName ? (
+                <p className="text-danger ms-4">Please enter last name</p>
+              ) : null}
             </div>
           </div>
           <div className="d-flex justify-content-start mt-5 ps-4">
@@ -49,10 +137,12 @@ const OrderForm = () => {
           </div>
           <div className="row mb-4 mx-4">
             <Input
-              type="tel"
+              type="text"
               placeholder="Phone Number"
               className="form-control"
               width="800px"
+              value={inputFields.phone}
+              onChange={handleChange}
             />
           </div>
           <div className="form-check ms-4 mb-5">
@@ -75,6 +165,8 @@ const OrderForm = () => {
               placeholder="Phone Number"
               className="form-control"
               width="800px"
+              value={inputFields.phone}
+              onChange={handleChange}
             />
           </div>
           <div className="d-flex justify-content-start mt-4 mb-3 ps-4">
@@ -110,22 +202,25 @@ const OrderForm = () => {
           <div className="form-check ms-4 mb-5">
             <CheckBox label="Would you recommend us?" />
           </div>
+          <div className="d-flex flex-row justify-content-between">
+            <div>
+              <button
+                className="btn border-dark ms-4"
+                style={{ width: "250px" }}
+              >
+                <span className={classes.buttontext}>Cancel Order</span>
+              </button>
+            </div>
+            <div>
+              <button
+                className="btn btn-dark me-4"
+                style={{ width: "250px", fontFamily: "Lora" }}
+              >
+                Place Order
+              </button>
+            </div>
+          </div>
         </form>
-        <div className="d-flex flex-row justify-content-between">
-          <div>
-            <button className="btn border-dark ms-4" style={{ width: "250px" }}>
-              <span className={classes.buttontext}>Cancel Order</span>
-            </button>
-          </div>
-          <div>
-            <button
-              className="btn btn-dark me-4"
-              style={{ width: "250px", fontFamily: "Lora" }}
-            >
-              Place Order
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
