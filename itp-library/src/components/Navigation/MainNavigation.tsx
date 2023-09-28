@@ -63,7 +63,7 @@ const MainNavigation = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink to="/order" className="nav-link">
+              <NavLink to="/orders" className="nav-link">
                 <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
                 <span className={classes.item}>ORDERS</span>
               </NavLink>

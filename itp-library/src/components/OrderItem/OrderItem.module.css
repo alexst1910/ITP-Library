@@ -1,0 +1,19 @@
+.image {
+  width: 25%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.lora {
+  font-family: "Lora";
+  font-weight: bold;
+  letter-spacing: 0;
+  font-size: 30px;
+}
+
+.gold {
+  color: #c69c00;
+  margin-left: 85px;
+}

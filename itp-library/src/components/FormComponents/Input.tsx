@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEvent } from "react";
 
 const Input = (props: {
   type: string;
@@ -6,7 +6,7 @@ const Input = (props: {
   width: string;
   className: string;
   value: string;
-  onChange: ChangeEventHandler;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
     <>

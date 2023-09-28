@@ -1,0 +1,21 @@
+.item {
+  height: 870px;
+  display: grid;
+  align-items: start;
+}
+
+.lora {
+  font-family: "Lora";
+  font-weight: bold;
+  letter-spacing: 0;
+  font-size: 30px;
+}
+
+.buttontext {
+  color: #000000;
+  font-size: 1rem;
+}
+
+.gold {
+  color: #c69c00;
+}

@@ -6,7 +6,7 @@ import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
 import { useEffect, useState } from "react";
-
+import { ChangeEvent, FormEvent } from "react";
 const OrderForm = () => {
   const [inputFields, setInputFields] = useState({
     firstName: "",
@@ -67,10 +67,12 @@ const OrderForm = () => {
     return errors;
   };
 
-  const handleChange = (e: any) => {
-    setInputFields({ ...inputFields, [e.target!.name]: e.target.value });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputFields({ ...inputFields, [name]: value });
+    setErrors({ ...errors, [name]: "" });
   };
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setErrors(validateInputs(inputFields));
     setSubmitting(true);
@@ -106,6 +108,7 @@ const OrderForm = () => {
                 value={inputFields.firstName}
                 onChange={handleChange}
               />
+              {/* <p className="text-danger ms-4">{errors.firstName}</p> */}
               {errors.firstName ? (
                 <p className="text-danger ms-4">Please enter first name</p>
               ) : null}
@@ -119,9 +122,7 @@ const OrderForm = () => {
                 value={inputFields.lastName}
                 onChange={handleChange}
               />
-              {errors.lastName ? (
-                <p className="text-danger ms-4">Please enter last name</p>
-              ) : null}
+              <p className="text-danger ms-4">{errors.lastName}</p>
             </div>
           </div>
           <div className="d-flex justify-content-start mt-5 ps-4">

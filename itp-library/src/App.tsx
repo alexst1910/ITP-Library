@@ -8,6 +8,8 @@ import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import OrderPage from "./pages/OrderPage";
+
+import OrdersList from "./components/Orders/OrdersList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/order",
         element: <OrderPage />,
+      },
+      {
+        path: "/orders",
+        element: <OrdersList />,
       },
     ],
   },
