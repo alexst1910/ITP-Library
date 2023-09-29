@@ -13,9 +13,6 @@ const OrderForm = () => {
     lastName: "",
     address: "",
     phone: "",
-    date: "",
-    select: "",
-    payment: "",
   });
 
   const [errors, setErrors] = useState({
@@ -23,11 +20,14 @@ const OrderForm = () => {
     lastName: "",
     address: "",
     phone: "",
-    date: "",
-    select: "",
-    payment: "",
   });
 
+  const [RadioOption, setRadioOption] = useState("");
+  const [RadioOptionError, setRadioOptionError] = useState("");
+  const [countryOption, setCountryOption] = useState("");
+  const [countrySelectError, setCountrySelectError] = useState("");
+  const [date, setDate] = useState("");
+  const [dateError, setDateError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const validateInputs = (inputValues: any) => {
@@ -36,14 +36,11 @@ const OrderForm = () => {
       lastName: "",
       address: "",
       phone: "",
-      date: "",
-      select: "",
-      payment: "",
     };
-    if (inputValues.firstName.length === 0) {
+    if (inputValues.firstName.trim() === "") {
       errors.firstName = "Please enter your first name";
     }
-    if (inputValues.lastName.length === 0) {
+    if (inputValues.lastName.trim() === "") {
       errors.lastName = "Please enter your last name";
     }
     if (inputValues.address.length === 0) {
@@ -55,27 +52,41 @@ const OrderForm = () => {
     if (inputValues.phone.length < 10) {
       errors.phone = "Phone number must have a length of 10";
     }
-    if (!inputValues.date) {
-      errors.date = "Please enter a date";
-    }
-    if (!inputValues.select) {
-      errors.select = "Please select a country";
-    }
-    if (!inputFields.payment) {
-      errors.payment = "Please enter payment type";
-    }
+
     return errors;
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(value);
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
+  };
+  const HandleRadioOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setRadioOption(e.target.value);
+    setRadioOptionError("");
+  };
+  const CountryOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setCountryOption(e.target.value);
+    setCountrySelectError("");
+  };
+  const HandleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
+    setDateError("");
   };
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setErrors(validateInputs(inputFields));
     setSubmitting(true);
+    if (RadioOption === "") {
+      setRadioOptionError("Please select a payment method");
+    }
+    if (countryOption === "") {
+      setCountrySelectError("Please enter a country");
+    }
+    if (date === "") {
+      setDateError("Please enter the date");
+    }
   };
   const finishSubmit = () => {
     console.log(inputFields);
@@ -106,12 +117,10 @@ const OrderForm = () => {
                 width="380px"
                 className="form-control mx-4"
                 value={inputFields.firstName}
+                name="firstName"
                 onChange={handleChange}
               />
-              {/* <p className="text-danger ms-4">{errors.firstName}</p> */}
-              {errors.firstName ? (
-                <p className="text-danger ms-4">Please enter first name</p>
-              ) : null}
+              <p className="text-danger ms-4">{errors.firstName}</p>
             </div>
             <div>
               <Input
@@ -120,6 +129,7 @@ const OrderForm = () => {
                 width="370px"
                 className="form-control mx-4"
                 value={inputFields.lastName}
+                name="lastName"
                 onChange={handleChange}
               />
               <p className="text-danger ms-4">{errors.lastName}</p>
@@ -131,10 +141,27 @@ const OrderForm = () => {
             </label>
           </div>
           <div className="row mb-3 mx-4">
-            <Select placeholder="Country Selection" />
+            <Select
+              placeholder="Country Selection"
+              name="select"
+              onChange={CountryOptionChange}
+            />{" "}
+            {countrySelectError && (
+              <p className="text-danger">{countrySelectError}</p>
+            )}
           </div>
+
           <div className="row mb-3 mx-4">
-            <input type="text" className="form-control" placeholder="Address" />
+            <Input
+              type="text"
+              placeholder="Address"
+              className="form-control"
+              width="800px"
+              name="address"
+              value={inputFields.address}
+              onChange={handleChange}
+            />
+            <p className="text-danger">{errors.address}</p>
           </div>
           <div className="row mb-4 mx-4">
             <Input
@@ -142,9 +169,11 @@ const OrderForm = () => {
               placeholder="Phone Number"
               className="form-control"
               width="800px"
+              name="phone"
               value={inputFields.phone}
               onChange={handleChange}
             />
+            <p className="text-danger">{errors.phone}</p>
           </div>
           <div className="form-check ms-4 mb-5">
             <CheckBox label="Use address for delivery" />
@@ -154,38 +183,70 @@ const OrderForm = () => {
               <b>Delivery Address</b>
             </label>
           </div>
-          <div className="row mb-3 mx-4">
-            <Select placeholder="Country Selection" />
+          <div className="row mb-4 mx-4">
+            <Select
+              placeholder="Country Selection"
+              name="select"
+              onChange={CountryOptionChange}
+            />{" "}
+            {countrySelectError && (
+              <p className="text-danger">{countrySelectError}</p>
+            )}
           </div>
+
           <div className="row mb-3 mx-4">
-            <input type="text" className="form-control" placeholder="Address" />
+            <Input
+              type="text"
+              placeholder="Address"
+              className="form-control"
+              width="800px"
+              name="address"
+              value={inputFields.address}
+              onChange={handleChange}
+            />
+            <p className="text-danger">{errors.address}</p>
           </div>
           <div className="row mb-5 mx-4">
             <Input
-              type="tel"
+              type="text"
               placeholder="Phone Number"
               className="form-control"
               width="800px"
+              name="phone"
               value={inputFields.phone}
               onChange={handleChange}
             />
+            <p className="text-danger">{errors.phone}</p>
           </div>
           <div className="d-flex justify-content-start mt-4 mb-3 ps-4">
             <label htmlFor="" className="form-label">
               <b>Payment Type</b>
             </label>
           </div>
-          <div className="form-check-inline ms-4 mb-5">
-            <Radio label="online" />
-            <Radio label="cash" />
+          <div className="form-check-inline ms-4 mb-3">
+            <Radio
+              label="online"
+              checked={RadioOption === "online"}
+              onChange={HandleRadioOptionChange}
+            />
+            <Radio
+              label="cash"
+              checked={RadioOption === "cash"}
+              onChange={HandleRadioOptionChange}
+            />
+            {RadioOptionError && (
+              <p className="text-danger">{RadioOptionError}</p>
+            )}
           </div>
+
           <div className="d-flex justify-content-start mt-2 ps-4">
             <label htmlFor="" className="form-label">
               <b>Delivery Date</b>
             </label>
           </div>
           <div className="row mb-5 mx-4">
-            <Date placeholder="Delivery Date" />
+            <Date placeholder="Delivery Date" onChange={HandleDateChange} />
+            {dateError && <p className="text-danger">{dateError}</p>}
           </div>
           <div className="d-flex justify-content-start mt-4 ps-4">
             <label htmlFor="" className="form-label">

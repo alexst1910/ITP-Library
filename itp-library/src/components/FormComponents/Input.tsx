@@ -6,6 +6,7 @@ const Input = (props: {
   width: string;
   className: string;
   value: string;
+  name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
@@ -15,6 +16,7 @@ const Input = (props: {
         type={props.type}
         className={props.className}
         placeholder={props.placeholder}
+        name={props.name}
         style={{ width: `${props.width}` }}
         onChange={props.onChange}
         required
