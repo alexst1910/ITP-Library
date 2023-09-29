@@ -7,6 +7,9 @@ import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
 import { useEffect, useState } from "react";
 import { ChangeEvent, FormEvent } from "react";
+import { error } from "console";
+import Button from "../Buttons/Button";
+import { Link } from "react-router-dom";
 const OrderForm = () => {
   const [inputFields, setInputFields] = useState({
     firstName: "",
@@ -20,6 +23,7 @@ const OrderForm = () => {
     lastName: "",
     address: "",
     phone: "",
+    phoneLength: "",
   });
 
   const [RadioOption, setRadioOption] = useState("");
@@ -36,6 +40,7 @@ const OrderForm = () => {
       lastName: "",
       address: "",
       phone: "",
+      phoneLength: "",
     };
     if (inputValues.firstName.trim() === "") {
       errors.firstName = "Please enter your first name";
@@ -46,11 +51,11 @@ const OrderForm = () => {
     if (inputValues.address.length === 0) {
       errors.address = "Please provide an address";
     }
-    if (inputValues.phone.length === 0) {
+    if (inputValues.phone.trim() === "") {
       errors.phone = "Please provide a phone number";
     }
     if (inputValues.phone.length < 10) {
-      errors.phone = "Phone number must have a length of 10";
+      errors.phoneLength = "Phone number must have a length of 10";
     }
 
     return errors;
@@ -62,18 +67,22 @@ const OrderForm = () => {
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
+
   const HandleRadioOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRadioOption(e.target.value);
     setRadioOptionError("");
   };
+
   const CountryOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCountryOption(e.target.value);
     setCountrySelectError("");
   };
+
   const HandleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
     setDateError("");
   };
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setErrors(validateInputs(inputFields));
@@ -88,14 +97,17 @@ const OrderForm = () => {
       setDateError("Please enter the date");
     }
   };
+
   const finishSubmit = () => {
     console.log(inputFields);
   };
+
   useEffect(() => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
     }
   }, [errors]);
+
   return (
     <div
       className={`container ${classes.item} border border-dark-subtle mt-5 rounded-1`}
@@ -109,12 +121,12 @@ const OrderForm = () => {
               <b>Contact Details</b>
             </label>
           </div>
-          <div className="d-flex flex-row">
-            <div>
+          <div className="row">
+            <div className="col col-sm-12 col-lg-6">
               <Input
                 type="text"
                 placeholder="First Name"
-                width="380px"
+                width="360px"
                 className="form-control mx-4"
                 value={inputFields.firstName}
                 name="firstName"
@@ -122,12 +134,12 @@ const OrderForm = () => {
               />
               <p className="text-danger ms-4">{errors.firstName}</p>
             </div>
-            <div>
+            <div className="col col-sm-12 col-lg-6">
               <Input
                 type="text"
                 placeholder="Last Name"
-                width="370px"
-                className="form-control mx-4"
+                width="360px"
+                className="form-control ms-4 mx-2"
                 value={inputFields.lastName}
                 name="lastName"
                 onChange={handleChange}
@@ -135,7 +147,7 @@ const OrderForm = () => {
               <p className="text-danger ms-4">{errors.lastName}</p>
             </div>
           </div>
-          <div className="d-flex justify-content-start mt-5 ps-4">
+          <div className="d-flex justify-content-start mt-2 ps-4">
             <label htmlFor="" className="form-label">
               <b>Billing Address</b>
             </label>
@@ -147,11 +159,11 @@ const OrderForm = () => {
               onChange={CountryOptionChange}
             />{" "}
             {countrySelectError && (
-              <p className="text-danger">{countrySelectError}</p>
+              <p className="text-danger mb-0">{countrySelectError}</p>
             )}
           </div>
 
-          <div className="row mb-3 mx-4">
+          <div className="row mb-1 mx-4">
             <Input
               type="text"
               placeholder="Address"
@@ -163,7 +175,7 @@ const OrderForm = () => {
             />
             <p className="text-danger">{errors.address}</p>
           </div>
-          <div className="row mb-4 mx-4">
+          <div className="row mb-2 mx-4">
             <Input
               type="text"
               placeholder="Phone Number"
@@ -173,9 +185,13 @@ const OrderForm = () => {
               value={inputFields.phone}
               onChange={handleChange}
             />
-            <p className="text-danger">{errors.phone}</p>
+            <p className="text-danger">
+              {inputFields.phone.length === 0
+                ? errors.phone
+                : errors.phoneLength}
+            </p>
           </div>
-          <div className="form-check ms-4 mb-5">
+          <div className="form-check ms-4 mb-3">
             <CheckBox label="Use address for delivery" />
           </div>
           <div className="d-flex justify-content-start mt-4 ps-4">
@@ -183,7 +199,7 @@ const OrderForm = () => {
               <b>Delivery Address</b>
             </label>
           </div>
-          <div className="row mb-4 mx-4">
+          <div className="row mb-3 mx-4">
             <Select
               placeholder="Country Selection"
               name="select"
@@ -194,7 +210,7 @@ const OrderForm = () => {
             )}
           </div>
 
-          <div className="row mb-3 mx-4">
+          <div className="row mb-1 mx-4">
             <Input
               type="text"
               placeholder="Address"
@@ -206,7 +222,7 @@ const OrderForm = () => {
             />
             <p className="text-danger">{errors.address}</p>
           </div>
-          <div className="row mb-5 mx-4">
+          <div className="row mb-1 mx-4">
             <Input
               type="text"
               placeholder="Phone Number"
@@ -216,9 +232,13 @@ const OrderForm = () => {
               value={inputFields.phone}
               onChange={handleChange}
             />
-            <p className="text-danger">{errors.phone}</p>
+            <p className="text-danger">
+              {inputFields.phone.length === 0
+                ? errors.phone
+                : errors.phoneLength}
+            </p>
           </div>
-          <div className="d-flex justify-content-start mt-4 mb-3 ps-4">
+          <div className="d-flex justify-content-start mb-2 ps-4">
             <label htmlFor="" className="form-label">
               <b>Payment Type</b>
             </label>
@@ -244,7 +264,7 @@ const OrderForm = () => {
               <b>Delivery Date</b>
             </label>
           </div>
-          <div className="row mb-5 mx-4">
+          <div className="row mb-3 mx-4">
             <Date placeholder="Delivery Date" onChange={HandleDateChange} />
             {dateError && <p className="text-danger">{dateError}</p>}
           </div>
@@ -253,10 +273,10 @@ const OrderForm = () => {
               <b>Observations</b>
             </label>
           </div>
-          <div className="row mb-5 mx-4">
+          <div className="row mb-3 mx-4">
             <TextArea placeholder="Observations" rows={3} />
           </div>
-          <div className="d-flex justify-content-start mt-4 mb-2 ps-4">
+          <div className="d-flex justify-content-start mt-1 mb-2 ps-4">
             <label htmlFor="" className="form-label">
               <b>Would You Recommend Us?</b>
             </label>
@@ -266,20 +286,17 @@ const OrderForm = () => {
           </div>
           <div className="d-flex flex-row justify-content-between">
             <div>
-              <button
-                className="btn border-dark ms-4"
-                style={{ width: "250px" }}
-              >
-                <span className={classes.buttontext}>Cancel Order</span>
-              </button>
+              <Link to="/cart">
+                <button
+                  className="btn border-dark ms-4 mb-5"
+                  style={{ width: "250px" }}
+                >
+                  <span className={classes.buttontext}>Cancel Order</span>
+                </button>
+              </Link>
             </div>
             <div>
-              <button
-                className="btn btn-dark me-4"
-                style={{ width: "250px", fontFamily: "Lora" }}
-              >
-                Place Order
-              </button>
+              <Button value="Place Order" />
             </div>
           </div>
         </form>
