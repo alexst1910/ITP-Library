@@ -1,5 +1,5 @@
 .item {
-  height: 870px;
+  max-height: 1400px;
   display: grid;
   align-items: start;
 }

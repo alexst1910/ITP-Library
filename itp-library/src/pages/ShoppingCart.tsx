@@ -28,7 +28,7 @@ const ShoppingCart = () => {
         })}
       </div>
 
-      <div className="container d-flex justify-content-between">
+      <div className="container d-flex justify-content-between mb-4">
         <div className={`fs-4 ${classes.lora}`}>
           <div className="mb-4">Total: </div>
           <div>
