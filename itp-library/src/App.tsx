@@ -8,7 +8,7 @@ import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import OrderPage from "./pages/OrderPage";
-
+import { OrderContextProvider } from "./context/OrderContext";
 import OrdersList from "./components/Orders/OrdersList";
 const router = createBrowserRouter([
   {
@@ -42,9 +42,12 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <ShoppingCartProvider>
-      <RouterProvider router={router} />
-    </ShoppingCartProvider>
+    <OrderContextProvider>
+      {" "}
+      <ShoppingCartProvider>
+        <RouterProvider router={router} />
+      </ShoppingCartProvider>
+    </OrderContextProvider>
   );
 }
 

@@ -2,7 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../OrderItem/OrderItem.module.css";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import cover from "../../images/book.jpg";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 const OrderItem = () => {
+  const { cartAmount, getTotal } = useContext(ShoppingCartContext);
+  const items = cartAmount();
+  const total = getTotal();
+  const orderNumber = Math.floor(Math.random() * 1000);
   return (
     <div className="row d-flex flex-row justify-content-between">
       <div className="col d-flex flex-row ">
@@ -11,9 +17,9 @@ const OrderItem = () => {
           style={{ backgroundImage: `url(${cover})` }}
         ></div>
         <div className="ps-5">
-          <h6 className={classes.lora}>Order #5454</h6>
+          <h6 className={classes.lora}>Order #{items > 0 && orderNumber}</h6>
           <p className="fs-5">
-            Items: <b>2</b>
+            Items: <b>{items}</b>
           </p>
           <p className="fs-5">
             Delivery Status: <b>In Progress</b>
@@ -22,7 +28,7 @@ const OrderItem = () => {
       </div>
       <div className="col d-flex  justify-content-end">
         <div>
-          <h3 className={`${classes.gold} ps-5`}>$90</h3>
+          <h3 className={`${classes.gold} ps-5`}>${total}</h3>
 
           <button
             type="button"

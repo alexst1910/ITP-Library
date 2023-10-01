@@ -5,12 +5,14 @@ import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import { error } from "console";
 import Button from "../Buttons/Button";
 import { Link } from "react-router-dom";
+import { OrderContext } from "../../context/OrderContext";
 const OrderForm = () => {
+  const { addToOrder } = useContext(OrderContext);
   const [inputFields, setInputFields] = useState({
     firstName: "",
     lastName: "",
@@ -63,7 +65,7 @@ const OrderForm = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(value);
+
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
@@ -96,6 +98,7 @@ const OrderForm = () => {
     if (date === "") {
       setDateError("Please enter the date");
     }
+    addToOrder();
   };
 
   const finishSubmit = () => {

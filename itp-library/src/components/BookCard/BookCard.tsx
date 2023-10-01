@@ -12,7 +12,6 @@ const BookCard = (props: {
   author: string;
   cover: string;
 }) => {
-  // const { openCart } = useShoppingCart();
   const { addToCart } = useContext(ShoppingCartContext);
   return (
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">

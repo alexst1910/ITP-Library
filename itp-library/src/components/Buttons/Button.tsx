@@ -1,3 +1,5 @@
+import { ChangeEvent, MouseEventHandler } from "react";
+
 const Button = (props: { value: string }) => {
   return (
     <button
