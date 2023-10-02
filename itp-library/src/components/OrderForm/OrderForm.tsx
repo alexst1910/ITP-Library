@@ -10,6 +10,7 @@ import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import Modal from "../Modals/Modal";
 // import { OrderContext } from "../../context/OrderContext";
 const OrderForm = () => {
   const { addToOrder } = useContext(ShoppingCartContext);
@@ -35,6 +36,9 @@ const OrderForm = () => {
   const [date, setDate] = useState("");
   const [dateError, setDateError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  const { buttonValue, showModal, handleShowModal, handleCloseModal } =
+    useContext(ShoppingCartContext);
 
   const validateInputs = (inputValues: any) => {
     let errors = {
@@ -296,7 +300,11 @@ const OrderForm = () => {
               </Link>
             </div>
             <div>
-              <Button value="Place Order" onClick={handleSubmit} />
+              {buttonValue === "Place Order" ? (
+                <Button onClick={handleSubmit} />
+              ) : buttonValue === "Update Order" ? (
+                <Button onClick={handleShowModal} />
+              ) : null}
             </div>
           </div>
         </form>

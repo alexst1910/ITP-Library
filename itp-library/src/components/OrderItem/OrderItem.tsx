@@ -2,10 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../OrderItem/OrderItem.module.css";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import cover from "../../images/book.jpg";
-
+import { Link } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { useContext } from "react";
 const OrderItem = (props: { total: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
-
+  const { handleButtonValue } = useContext(ShoppingCartContext);
   return (
     <div className="row d-flex flex-row justify-content-between">
       <div className="col d-flex flex-row ">
@@ -27,18 +29,21 @@ const OrderItem = (props: { total: number }) => {
         <div>
           <h3 className={`${classes.gold} ps-5`}>${props.total}</h3>
 
-          <button
-            type="button"
-            className={`btn border-0 ${classes.button} p-0`}
-          >
-            <p className="fs-5">
-              <FontAwesomeIcon
-                icon={faPen}
-                style={{ color: "#000000", paddingRight: "10px" }}
-              />
-              Edit order details
-            </p>
-          </button>
+          <Link to="/order">
+            <button
+              type="button"
+              className={`btn border-0 ${classes.button} p-0`}
+              onClick={handleButtonValue}
+            >
+              <p className="fs-5">
+                <FontAwesomeIcon
+                  icon={faPen}
+                  style={{ color: "#000000", paddingRight: "10px" }}
+                />
+                Edit order details
+              </p>
+            </button>
+          </Link>
         </div>
       </div>
       <hr className="mt-4"></hr>

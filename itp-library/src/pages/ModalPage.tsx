@@ -1,7 +1,7 @@
 import Modal from "../components/Modals/Modal";
 
 const ModalPage = () => {
-  return <Modal />;
+  return <></>;
 };
 
 export default ModalPage;

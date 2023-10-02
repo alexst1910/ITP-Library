@@ -1,57 +1,76 @@
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../Modals/Modal.module.css";
-const Modal = () => {
+import { Link } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { useContext, useEffect } from "react";
+interface ModalProps {
+  show: boolean;
+  onClose: () => void;
+}
+const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
+  const { handleCloseModal } = useContext(ShoppingCartContext);
+
   return (
     <>
-      <button
+      {/* <button
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
         Launch static backdrop modal
-      </button>
+      </button> */}
       <div
-        className="modal modal-dialog modal-dialog-centered "
+        className={`modal modal-dialog modal-dialog-centered ${
+          show ? "show" : ""
+        }`}
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabIndex={-1}
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
+        style={{ display: show ? "block" : "none" }}
       >
         <div className="modal-dialog ">
           <div className="modal-content rounded-0">
-            <div className="modal-header border-0 pb-0">
+            <div className="modal-header border-0 pb-0 d-flex justify-content-start">
+              <FontAwesomeIcon
+                icon={faCircleExclamation}
+                className="me-1 fs-3"
+                style={{ color: "#c69c00" }}
+              />{" "}
               <h1
-                className={`modal-title fs-6 ms-4 fw-semibold ${classes.modalText}`}
+                className={`modal-title fs-6 ms-3 fw-semibold ${classes.modalText}`}
                 id="staticBackdropLabel"
               >
-                <FontAwesomeIcon
-                  icon={faCircleExclamation}
-                  className="me-2 fs-4"
-                  style={{ color: "#c69c00" }}
-                />{" "}
                 Confirmation
               </h1>
             </div>
             <div
-              className={`modal-body ${classes.modalText} ${classes.modalBody} ms-5 pt-0`}
+              className={`modal-body ${classes.modalText} ${classes.modalBody} ms-5 ps-3 pt-0`}
             >
               Confirm order detail changes?
             </div>
             <div className="modal-footer border-0">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className={`btn border-dark ${classes.buttonText}`}
                 data-bs-dismiss="modal"
+                onClick={onClose}
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
-                Understood
-              </button>
+              <Link to="/orders">
+                <button
+                  type="button"
+                  className="btn btn-dark"
+                  onClick={onClose}
+                >
+                  Confirm
+                </button>
+              </Link>
             </div>
           </div>
         </div>

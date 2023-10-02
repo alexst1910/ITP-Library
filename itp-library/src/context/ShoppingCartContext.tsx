@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { FormEvent, ReactNode, createContext, useState } from "react";
 import { allBooks } from "../assets/allBooks";
 import Book from "../interfaces/book";
 
@@ -10,6 +10,11 @@ type ShoppingCartContextProps = {
   cartAmount: () => number;
   orderItems: Book[];
   addToOrder: () => void;
+  buttonValue: string;
+  handleButtonValue: () => void;
+  showModal: boolean;
+  handleShowModal: (e: FormEvent) => void;
+  handleCloseModal: () => void;
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -31,6 +36,22 @@ export const ShoppingCartProvider = ({
   const [cartItems, setCartItems] = useState(getDefaultCart(allBooks));
   const [orderItems, setOrderItems] = useState<Book[]>([]);
 
+  // place order button functionalities
+  const [buttonValue, setButtonValue] = useState("Place Order");
+  const [showModal, setShowModal] = useState(false);
+  const handleButtonValue = () => {
+    setButtonValue("Update Order");
+    console.log(buttonValue);
+  };
+
+  const handleShowModal = (e: FormEvent) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   //order functionalities
   const addToOrder = () => {
     let orderedBooks = [];
@@ -91,6 +112,11 @@ export const ShoppingCartProvider = ({
         removeFromCart,
         orderItems,
         addToOrder,
+        buttonValue,
+        handleButtonValue,
+        showModal,
+        handleShowModal,
+        handleCloseModal,
       }}
     >
       {children}
