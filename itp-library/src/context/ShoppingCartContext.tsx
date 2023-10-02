@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { allBooks } from "../assets/allBooks";
 import Book from "../interfaces/book";
 
@@ -8,6 +8,8 @@ type ShoppingCartContextProps = {
   cartItems: { [key: number]: number };
   getTotal: () => number;
   cartAmount: () => number;
+  orderItems: Book[];
+  addToOrder: () => void;
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -27,6 +29,22 @@ export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
   const [cartItems, setCartItems] = useState(getDefaultCart(allBooks));
+  const [orderItems, setOrderItems] = useState<Book[]>([]);
+
+  const addToOrder = () => {
+    let orderedBooks = [];
+    for (const itemID in cartItems) {
+      if (cartItems[itemID] > 0) {
+        let itemInfo = allBooks.find((item) => item.id === Number(itemID))!;
+        if (itemInfo) {
+          for (let i = 0; i < cartItems[itemID]; i++) {
+            orderedBooks.push(itemInfo);
+          }
+        }
+      }
+    }
+    setOrderItems(orderedBooks);
+  };
 
   const addToCart = (id: number) => {
     setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
@@ -64,7 +82,15 @@ export const ShoppingCartProvider = ({
 
   return (
     <ShoppingCartContext.Provider
-      value={{ addToCart, cartItems, getTotal, cartAmount, removeFromCart }}
+      value={{
+        addToCart,
+        cartItems,
+        getTotal,
+        cartAmount,
+        removeFromCart,
+        orderItems,
+        addToOrder,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>

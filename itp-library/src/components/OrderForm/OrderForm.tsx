@@ -7,12 +7,12 @@ import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
 import { useEffect, useState, useContext } from "react";
 import { ChangeEvent, FormEvent } from "react";
-import { error } from "console";
 import Button from "../Buttons/Button";
 import { Link } from "react-router-dom";
-import { OrderContext } from "../../context/OrderContext";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+// import { OrderContext } from "../../context/OrderContext";
 const OrderForm = () => {
-  const { addToOrder } = useContext(OrderContext);
+  const { addToOrder } = useContext(ShoppingCartContext);
   const [inputFields, setInputFields] = useState({
     firstName: "",
     lastName: "",
