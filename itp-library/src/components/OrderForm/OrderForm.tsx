@@ -53,8 +53,9 @@ const OrderForm = () => {
     if (inputValues.address.length === 0) {
       errors.address = "Please provide an address";
     }
-    if (inputValues.phone.trim() === "") {
+    if (inputValues.phone.length === 0) {
       errors.phone = "Please provide a phone number";
+      // errors.phoneLength = "";
     }
     if (inputValues.phone.length < 10) {
       errors.phoneLength = "Phone number must have a length of 10";
@@ -191,7 +192,9 @@ const OrderForm = () => {
             <p className="text-danger">
               {inputFields.phone.length === 0
                 ? errors.phone
-                : errors.phoneLength}
+                : inputFields.phone.length < 10
+                ? errors.phoneLength
+                : null}
             </p>
           </div>
           <div className="form-check ms-4 mb-3">
@@ -238,7 +241,9 @@ const OrderForm = () => {
             <p className="text-danger">
               {inputFields.phone.length === 0
                 ? errors.phone
-                : errors.phoneLength}
+                : inputFields.phone.length < 10
+                ? errors.phoneLength
+                : null}
             </p>
           </div>
           <div className="d-flex justify-content-start mb-2 ps-4">
@@ -247,16 +252,8 @@ const OrderForm = () => {
             </label>
           </div>
           <div className="form-check-inline ms-4 mb-3">
-            <Radio
-              label="online"
-              checked={RadioOption === "online"}
-              onChange={HandleRadioOptionChange}
-            />
-            <Radio
-              label="cash"
-              checked={RadioOption === "cash"}
-              onChange={HandleRadioOptionChange}
-            />
+            <Radio onChange={HandleRadioOptionChange} />
+
             {RadioOptionError && (
               <p className="text-danger">{RadioOptionError}</p>
             )}
