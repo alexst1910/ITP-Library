@@ -31,6 +31,7 @@ export const ShoppingCartProvider = ({
   const [cartItems, setCartItems] = useState(getDefaultCart(allBooks));
   const [orderItems, setOrderItems] = useState<Book[]>([]);
 
+  //order functionalities
   const addToOrder = () => {
     let orderedBooks = [];
     for (const itemID in cartItems) {

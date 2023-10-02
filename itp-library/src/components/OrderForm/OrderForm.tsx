@@ -119,7 +119,7 @@ const OrderForm = () => {
       <div className={classes.lora}>Order Details</div>
       <div>
         {" "}
-        <form className="needs-validation" onSubmit={handleSubmit} noValidate>
+        <form className="needs-validation" noValidate>
           <div className="d-flex justify-content-start mt-4 ps-4">
             <label htmlFor="" className="form-label">
               <b>Contact Details</b>
@@ -296,7 +296,7 @@ const OrderForm = () => {
               </Link>
             </div>
             <div>
-              <Button value="Place Order" />
+              <Button value="Place Order" onClick={handleSubmit} />
             </div>
           </div>
         </form>
