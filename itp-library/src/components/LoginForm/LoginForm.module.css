@@ -1,0 +1,14 @@
+.item {
+  height: 600px;
+  width: 700px;
+  /* display: grid;
+  align-items: start; */
+}
+.lora {
+  font-family: "Lora";
+  font-weight: bold;
+  letter-spacing: 0;
+  font-size: 35px;
+  padding-top: 30px;
+  padding-left: 10px;
+}

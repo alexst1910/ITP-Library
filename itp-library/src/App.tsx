@@ -11,6 +11,7 @@ import OrderPage from "./pages/OrderPage";
 // import { OrderContextProvider } from "./context/OrderContext";
 import OrdersList from "./components/Orders/OrdersList";
 import ModalPage from "./pages/ModalPage";
+import LoginPage from "./pages/LoginPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/modal",
         element: <ModalPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
     ],
   },
