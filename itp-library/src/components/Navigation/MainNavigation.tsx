@@ -69,7 +69,7 @@ const MainNavigation = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="" className="nav-link">
+              <NavLink to="/login" className="nav-link">
                 <FontAwesomeIcon icon={faUser} className={classes.icon} />
                 <span className={classes.item}>LOGIN</span>
               </NavLink>

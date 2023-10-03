@@ -1,7 +1,7 @@
-import LoginForm from "../components/LoginForm/LoginForm";
 import classes from "../pages/LoginPage.module.css";
 import cover from "../images/library.jpg";
-const LoginPage = () => {
+import RegisterForm from "../components/RegisterForm/RegisterForm";
+const RegisterPage = () => {
   return (
     <div className={`container ${classes.item}`}>
       <div className="row">
@@ -13,11 +13,11 @@ const LoginPage = () => {
           ></div>
         </div>
         <div className="col">
-          <LoginForm />
+          <RegisterForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

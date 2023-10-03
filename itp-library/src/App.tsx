@@ -12,6 +12,7 @@ import OrderPage from "./pages/OrderPage";
 import OrdersList from "./components/Orders/OrdersList";
 import ModalPage from "./pages/ModalPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       },
     ],
   },
