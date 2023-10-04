@@ -27,6 +27,7 @@ const OrderForm = () => {
     address: "",
     phone: "",
     phoneLength: "",
+    phoneFormat: "",
   });
 
   const [RadioOption, setRadioOption] = useState("");
@@ -47,6 +48,7 @@ const OrderForm = () => {
       address: "",
       phone: "",
       phoneLength: "",
+      phoneFormat: "",
     };
     if (inputValues.firstName.trim() === "") {
       errors.firstName = "Please enter your first name";
@@ -63,6 +65,12 @@ const OrderForm = () => {
     }
     if (inputValues.phone.length < 10) {
       errors.phoneLength = "Phone number must have a length of 10";
+    }
+    if (
+      inputValues.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) &&
+      !/^\d+$/.test(inputValues.phone)
+    ) {
+      errors.phoneFormat = "Provide a valid phone format";
     }
 
     return errors;
@@ -185,7 +193,7 @@ const OrderForm = () => {
           </div>
           <div className="row mb-2 mx-4">
             <Input
-              type="text"
+              type="tel"
               placeholder="Phone Number"
               className="form-control"
               width="800px"
@@ -198,6 +206,9 @@ const OrderForm = () => {
                 ? errors.phone
                 : inputFields.phone.length < 10
                 ? errors.phoneLength
+                : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                  !/^\d+$/.test(inputFields.phone)
+                ? errors.phoneFormat
                 : null}
             </p>
           </div>
@@ -234,7 +245,7 @@ const OrderForm = () => {
           </div>
           <div className="row mb-1 mx-4">
             <Input
-              type="text"
+              type="tel"
               placeholder="Phone Number"
               className="form-control"
               width="800px"
@@ -247,6 +258,9 @@ const OrderForm = () => {
                 ? errors.phone
                 : inputFields.phone.length < 10
                 ? errors.phoneLength
+                : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                  !/^\d+$/.test(inputFields.phone)
+                ? errors.phoneFormat
                 : null}
             </p>
           </div>

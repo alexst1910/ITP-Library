@@ -19,6 +19,7 @@ const Input = (props: {
         name={props.name}
         style={{ width: `${props.width}` }}
         onChange={props.onChange}
+        pattern={props.type === "tel" ? "[0-9]{3}-[0-9]{3}-[0-9]{4}" : ""}
         required
       ></input>
     </>
