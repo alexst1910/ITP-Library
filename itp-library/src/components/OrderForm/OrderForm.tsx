@@ -38,9 +38,17 @@ const OrderForm = () => {
   const [dateError, setDateError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const { buttonValue, showModal, handleShowModal, handleCloseModal } =
-    useContext(ShoppingCartContext);
+  const { buttonValue } = useContext(ShoppingCartContext);
+  const [showModal, setShowModal] = useState(false);
 
+  const handleShowModal = (e: FormEvent) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    console.log("close");
+  };
   const validateInputs = (inputValues: any) => {
     let errors = {
       firstName: "",
@@ -122,208 +130,212 @@ const OrderForm = () => {
     if (Object.keys(errors).length === 0 && submitting) {
       finishSubmit();
     }
-  }, [errors]);
+  });
 
   return (
-    <div
-      className={`container ${classes.item} border border-dark-subtle mt-5 rounded-1`}
-    >
-      <div className={classes.lora}>Order Details</div>
-      <div>
+    <>
+      <div
+        className={`container ${classes.item} border border-dark-subtle mt-5 rounded-1`}
+      >
         {" "}
-        <form className="needs-validation" noValidate>
-          <div className="d-flex justify-content-start mt-4 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Contact Details</b>
-            </label>
-          </div>
-          <div className="row">
-            <div className="col col-sm-12 col-lg-6">
+        <Modal show={showModal} onClose={handleCloseModal} />
+        <div className={classes.lora}>Order Details</div>
+        <div>
+          {" "}
+          <form className="needs-validation" noValidate>
+            <div className="d-flex justify-content-start mt-4 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Contact Details</b>
+              </label>
+            </div>
+            <div className="row">
+              <div className="col col-sm-12 col-lg-6">
+                <Input
+                  type="text"
+                  placeholder="First Name"
+                  width="360px"
+                  className="form-control mx-4"
+                  value={inputFields.firstName}
+                  name="firstName"
+                  onChange={handleChange}
+                />
+                <p className="text-danger ms-4">{errors.firstName}</p>
+              </div>
+              <div className="col col-sm-12 col-lg-6">
+                <Input
+                  type="text"
+                  placeholder="Last Name"
+                  width="360px"
+                  className="form-control ms-4 mx-2"
+                  value={inputFields.lastName}
+                  name="lastName"
+                  onChange={handleChange}
+                />
+                <p className="text-danger ms-4">{errors.lastName}</p>
+              </div>
+            </div>
+            <div className="d-flex justify-content-start mt-2 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Billing Address</b>
+              </label>
+            </div>
+            <div className="row mb-3 mx-4">
+              <Select
+                placeholder="Country Selection"
+                name="select"
+                onChange={CountryOptionChange}
+              />{" "}
+              {countrySelectError && (
+                <p className="text-danger mb-0">{countrySelectError}</p>
+              )}
+            </div>
+
+            <div className="row mb-1 mx-4">
               <Input
                 type="text"
-                placeholder="First Name"
-                width="360px"
-                className="form-control mx-4"
-                value={inputFields.firstName}
-                name="firstName"
+                placeholder="Address"
+                className="form-control"
+                width="800px"
+                name="address"
+                value={inputFields.address}
                 onChange={handleChange}
               />
-              <p className="text-danger ms-4">{errors.firstName}</p>
+              <p className="text-danger">{errors.address}</p>
             </div>
-            <div className="col col-sm-12 col-lg-6">
+            <div className="row mb-2 mx-4">
+              <Input
+                type="tel"
+                placeholder="Phone Number"
+                className="form-control"
+                width="800px"
+                name="phone"
+                value={inputFields.phone}
+                onChange={handleChange}
+              />
+              <p className="text-danger">
+                {inputFields.phone.length === 0
+                  ? errors.phone
+                  : inputFields.phone.length < 10
+                  ? errors.phoneLength
+                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                    !/^\d+$/.test(inputFields.phone)
+                  ? errors.phoneFormat
+                  : null}
+              </p>
+            </div>
+            <div className="form-check ms-4 mb-3">
+              <CheckBox label="Use address for delivery" />
+            </div>
+            <div className="d-flex justify-content-start mt-4 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Delivery Address</b>
+              </label>
+            </div>
+            <div className="row mb-3 mx-4">
+              <Select
+                placeholder="Country Selection"
+                name="select"
+                onChange={CountryOptionChange}
+              />{" "}
+              {countrySelectError && (
+                <p className="text-danger">{countrySelectError}</p>
+              )}
+            </div>
+
+            <div className="row mb-1 mx-4">
               <Input
                 type="text"
-                placeholder="Last Name"
-                width="360px"
-                className="form-control ms-4 mx-2"
-                value={inputFields.lastName}
-                name="lastName"
+                placeholder="Address"
+                className="form-control"
+                width="800px"
+                name="address"
+                value={inputFields.address}
                 onChange={handleChange}
               />
-              <p className="text-danger ms-4">{errors.lastName}</p>
+              <p className="text-danger">{errors.address}</p>
             </div>
-          </div>
-          <div className="d-flex justify-content-start mt-2 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Billing Address</b>
-            </label>
-          </div>
-          <div className="row mb-3 mx-4">
-            <Select
-              placeholder="Country Selection"
-              name="select"
-              onChange={CountryOptionChange}
-            />{" "}
-            {countrySelectError && (
-              <p className="text-danger mb-0">{countrySelectError}</p>
-            )}
-          </div>
-
-          <div className="row mb-1 mx-4">
-            <Input
-              type="text"
-              placeholder="Address"
-              className="form-control"
-              width="800px"
-              name="address"
-              value={inputFields.address}
-              onChange={handleChange}
-            />
-            <p className="text-danger">{errors.address}</p>
-          </div>
-          <div className="row mb-2 mx-4">
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              className="form-control"
-              width="800px"
-              name="phone"
-              value={inputFields.phone}
-              onChange={handleChange}
-            />
-            <p className="text-danger">
-              {inputFields.phone.length === 0
-                ? errors.phone
-                : inputFields.phone.length < 10
-                ? errors.phoneLength
-                : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
-                  !/^\d+$/.test(inputFields.phone)
-                ? errors.phoneFormat
-                : null}
-            </p>
-          </div>
-          <div className="form-check ms-4 mb-3">
-            <CheckBox label="Use address for delivery" />
-          </div>
-          <div className="d-flex justify-content-start mt-4 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Delivery Address</b>
-            </label>
-          </div>
-          <div className="row mb-3 mx-4">
-            <Select
-              placeholder="Country Selection"
-              name="select"
-              onChange={CountryOptionChange}
-            />{" "}
-            {countrySelectError && (
-              <p className="text-danger">{countrySelectError}</p>
-            )}
-          </div>
-
-          <div className="row mb-1 mx-4">
-            <Input
-              type="text"
-              placeholder="Address"
-              className="form-control"
-              width="800px"
-              name="address"
-              value={inputFields.address}
-              onChange={handleChange}
-            />
-            <p className="text-danger">{errors.address}</p>
-          </div>
-          <div className="row mb-1 mx-4">
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              className="form-control"
-              width="800px"
-              name="phone"
-              value={inputFields.phone}
-              onChange={handleChange}
-            />
-            <p className="text-danger">
-              {inputFields.phone.length === 0
-                ? errors.phone
-                : inputFields.phone.length < 10
-                ? errors.phoneLength
-                : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
-                  !/^\d+$/.test(inputFields.phone)
-                ? errors.phoneFormat
-                : null}
-            </p>
-          </div>
-          <div className="d-flex justify-content-start mb-2 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Payment Type</b>
-            </label>
-          </div>
-          <div className="form-check-inline ms-4 mb-3">
-            <Radio onChange={HandleRadioOptionChange} />
-
-            {RadioOptionError && (
-              <p className="text-danger">{RadioOptionError}</p>
-            )}
-          </div>
-
-          <div className="d-flex justify-content-start mt-2 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Delivery Date</b>
-            </label>
-          </div>
-          <div className="row mb-3 mx-4">
-            <Date placeholder="Delivery Date" onChange={HandleDateChange} />
-            {dateError && <p className="text-danger">{dateError}</p>}
-          </div>
-          <div className="d-flex justify-content-start mt-4 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Observations</b>
-            </label>
-          </div>
-          <div className="row mb-3 mx-4">
-            <TextArea placeholder="Observations" rows={3} />
-          </div>
-          <div className="d-flex justify-content-start mt-1 mb-2 ps-4">
-            <label htmlFor="" className="form-label">
-              <b>Would You Recommend Us?</b>
-            </label>
-          </div>
-          <div className="form-check ms-4 mb-5">
-            <CheckBox label="Would you recommend us?" />
-          </div>
-          <div className="d-flex flex-row justify-content-between">
-            <div>
-              <Link to="/cart">
-                <button
-                  className="btn border-dark ms-4 mb-5"
-                  style={{ width: "250px" }}
-                >
-                  <span className={classes.buttontext}>Cancel Order</span>
-                </button>
-              </Link>
+            <div className="row mb-1 mx-4">
+              <Input
+                type="tel"
+                placeholder="Phone Number"
+                className="form-control"
+                width="800px"
+                name="phone"
+                value={inputFields.phone}
+                onChange={handleChange}
+              />
+              <p className="text-danger">
+                {inputFields.phone.length === 0
+                  ? errors.phone
+                  : inputFields.phone.length < 10
+                  ? errors.phoneLength
+                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                    !/^\d+$/.test(inputFields.phone)
+                  ? errors.phoneFormat
+                  : null}
+              </p>
             </div>
-            <div>
-              {buttonValue === "Place Order" ? (
-                <Button onClick={handleSubmit} />
-              ) : buttonValue === "Update Order" ? (
-                <Button onClick={handleShowModal} />
-              ) : null}
+            <div className="d-flex justify-content-start mb-2 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Payment Type</b>
+              </label>
             </div>
-          </div>
-        </form>
+            <div className="form-check-inline ms-4 mb-3">
+              <Radio onChange={HandleRadioOptionChange} />
+
+              {RadioOptionError && (
+                <p className="text-danger">{RadioOptionError}</p>
+              )}
+            </div>
+
+            <div className="d-flex justify-content-start mt-2 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Delivery Date</b>
+              </label>
+            </div>
+            <div className="row mb-3 mx-4">
+              <Date placeholder="Delivery Date" onChange={HandleDateChange} />
+              {dateError && <p className="text-danger">{dateError}</p>}
+            </div>
+            <div className="d-flex justify-content-start mt-4 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Observations</b>
+              </label>
+            </div>
+            <div className="row mb-3 mx-4">
+              <TextArea placeholder="Observations" rows={3} />
+            </div>
+            <div className="d-flex justify-content-start mt-1 mb-2 ps-4">
+              <label htmlFor="" className="form-label">
+                <b>Would You Recommend Us?</b>
+              </label>
+            </div>
+            <div className="form-check ms-4 mb-5">
+              <CheckBox label="Would you recommend us?" />
+            </div>
+            <div className="d-flex flex-row justify-content-between">
+              <div>
+                <Link to="/cart">
+                  <button
+                    className="btn border-dark ms-4 mb-5"
+                    style={{ width: "250px" }}
+                  >
+                    <span className={classes.buttontext}>Cancel Order</span>
+                  </button>
+                </Link>
+              </div>
+              <div>
+                {buttonValue === "Place Order" ? (
+                  <Button onClick={handleSubmit} />
+                ) : buttonValue === "Update Order" ? (
+                  <Button onClick={handleShowModal} />
+                ) : null}
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default OrderForm;

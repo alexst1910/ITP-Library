@@ -2,15 +2,12 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../Modals/Modal.module.css";
 import { Link } from "react-router-dom";
-import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-import { useContext, useEffect } from "react";
+
 interface ModalProps {
   show: boolean;
   onClose: () => void;
 }
 const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
-  const { handleCloseModal } = useContext(ShoppingCartContext);
-
   return (
     <>
       {/* <button
@@ -23,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
       </button> */}
       <div
         className={`modal modal-dialog modal-dialog-centered ${
-          show ? "show" : ""
+          show ? "modal" : ""
         }`}
         id="staticBackdrop"
         data-bs-backdrop="static"
@@ -31,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
         tabIndex={-1}
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
-        style={{ display: show ? "block" : "none" }}
+        style={{ display: `${show ? "block" : "none"}` }}
       >
         <div className="modal-dialog ">
           <div className="modal-content rounded-0">
@@ -66,6 +63,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
                 <button
                   type="button"
                   className="btn btn-dark"
+                  data-bs-dismiss="modal"
                   onClick={onClose}
                 >
                   Confirm

@@ -10,7 +10,7 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import OrderPage from "./pages/OrderPage";
 // import { OrderContextProvider } from "./context/OrderContext";
 import OrdersList from "./components/Orders/OrdersList";
-import ModalPage from "./pages/ModalPage";
+
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 const router = createBrowserRouter([
@@ -40,10 +40,7 @@ const router = createBrowserRouter([
         path: "/orders",
         element: <OrdersList />,
       },
-      {
-        path: "/modal",
-        element: <ModalPage />,
-      },
+
       {
         path: "/login",
         element: <LoginPage />,

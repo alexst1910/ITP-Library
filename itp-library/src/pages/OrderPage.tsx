@@ -3,12 +3,10 @@ import cover from "../images/library2.jpg";
 import OrderForm from "../components/OrderForm/OrderForm";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
-import Modal from "../components/Modals/Modal";
+
 const OrderPage = () => {
-  const { showModal, handleCloseModal } = useContext(ShoppingCartContext);
   return (
     <>
-      <Modal show={showModal} onClose={handleCloseModal} />
       <div className={`container ${classes.item}`}>
         <div className="row">
           <div className="col">

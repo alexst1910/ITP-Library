@@ -12,9 +12,6 @@ type ShoppingCartContextProps = {
   addToOrder: () => void;
   buttonValue: string;
   handleButtonValue: () => void;
-  showModal: boolean;
-  handleShowModal: (e: FormEvent) => void;
-  handleCloseModal: () => void;
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -38,20 +35,11 @@ export const ShoppingCartProvider = ({
 
   // place order button functionalities
   const [buttonValue, setButtonValue] = useState("Place Order");
-  const [showModal, setShowModal] = useState(false);
+
   const handleButtonValue = () => {
     setButtonValue("Update Order");
-    console.log(buttonValue);
   };
 
-  const handleShowModal = (e: FormEvent) => {
-    e.preventDefault();
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
   //order functionalities
   const addToOrder = () => {
     let orderedBooks: Book[] = [];
@@ -75,7 +63,6 @@ export const ShoppingCartProvider = ({
     orderedBooks.push(allOrders);
     setOrderItems(orderedBooks);
     setCartItems([]);
-    console.log(cartItems);
   };
 
   const addToCart = (id: number) => {
@@ -124,9 +111,6 @@ export const ShoppingCartProvider = ({
         addToOrder,
         buttonValue,
         handleButtonValue,
-        showModal,
-        handleShowModal,
-        handleCloseModal,
       }}
     >
       {children}
