@@ -54,18 +54,28 @@ export const ShoppingCartProvider = ({
   };
   //order functionalities
   const addToOrder = () => {
-    let orderedBooks = [];
+    let orderedBooks: Book[] = [];
+    let totalQuantity = 0;
+    let totalPrice = 0;
+
     for (const itemID in cartItems) {
       if (cartItems[itemID] > 0) {
         let itemInfo = allBooks.find((item) => item.id === Number(itemID))!;
+
         if (itemInfo) {
-          for (let i = 0; i < cartItems[itemID]; i++) {
-            orderedBooks.push(itemInfo);
-          }
+          totalQuantity += cartItems[itemID];
+          totalPrice += cartItems[itemID] * itemInfo.price;
         }
       }
     }
+    const allOrders: any = {
+      totalPrice,
+      totalQuantity,
+    };
+    orderedBooks.push(allOrders);
     setOrderItems(orderedBooks);
+    setCartItems([]);
+    console.log(cartItems);
   };
 
   const addToCart = (id: number) => {

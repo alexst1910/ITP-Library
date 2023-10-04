@@ -5,7 +5,7 @@ import cover from "../../images/book.jpg";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext } from "react";
-const OrderItem = (props: { total: number }) => {
+const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
   const { handleButtonValue } = useContext(ShoppingCartContext);
   return (
@@ -18,7 +18,7 @@ const OrderItem = (props: { total: number }) => {
         <div className="ps-5">
           <h6 className={classes.lora}>Order #{orderNumber}</h6>
           <p className="fs-5">
-            Items: <b>1</b>
+            Items: <b>{props.amount}</b>
           </p>
           <p className="fs-5">
             Delivery Status: <b>In Progress</b>
@@ -32,7 +32,7 @@ const OrderItem = (props: { total: number }) => {
           <Link to="/order">
             <button
               type="button"
-              className={`btn border-0 ${classes.button} p-0`}
+              className={`btn border-0 ${classes.button} ps-3`}
               onClick={handleButtonValue}
             >
               <p className="fs-5">

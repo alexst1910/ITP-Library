@@ -19,6 +19,8 @@ export const BestBooks: Book[] = [
     price: 90,
     author: "Kevin Anderson",
     cover: cover_1,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 2,
@@ -26,20 +28,28 @@ export const BestBooks: Book[] = [
     price: 60,
     author: "Terry Crosby",
     cover: cover_2,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
+
   {
     id: 3,
     title: "Normal People",
     price: 75,
     author: "Sally Rooney",
     cover: cover_3,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
+
   {
     id: 4,
     title: "Sin Eater",
     price: 50,
     author: "Megan Campisi",
     cover: cover_4,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 5,
@@ -47,6 +57,8 @@ export const BestBooks: Book[] = [
     price: 70,
     author: "Tara Westover",
     cover: cover_5,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 6,
@@ -54,6 +66,8 @@ export const BestBooks: Book[] = [
     price: 55,
     author: "Sophia Hill",
     cover: cover_6,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
 ];
 
@@ -64,6 +78,8 @@ export const RecentBooks: Book[] = [
     price: 45,
     author: "Carissa Pacheco",
     cover: cover_7,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 8,
@@ -71,6 +87,8 @@ export const RecentBooks: Book[] = [
     price: 63,
     author: "John Lemon",
     cover: cover_8,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
 
   {
@@ -79,6 +97,8 @@ export const RecentBooks: Book[] = [
     price: 53,
     author: "Jack Hart",
     cover: cover_9,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 10,
@@ -86,6 +106,8 @@ export const RecentBooks: Book[] = [
     price: 68,
     author: "Rachel Hartman",
     cover: cover_10,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 11,
@@ -93,6 +115,8 @@ export const RecentBooks: Book[] = [
     price: 76,
     author: "William Wallburgh",
     cover: cover_11,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
   {
     id: 12,
@@ -100,6 +124,8 @@ export const RecentBooks: Book[] = [
     price: 77,
     author: "Jeff Vandermeer",
     cover: cover_12,
+    totalPrice: 0,
+    totalQuantity: 0,
   },
 ];
 export const SectionOne: string = "Best books of the month";

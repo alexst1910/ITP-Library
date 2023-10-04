@@ -7,24 +7,22 @@ import { Link } from "react-router-dom";
 const ShoppingCart = () => {
   const { cartItems, getTotal } = useContext(ShoppingCartContext);
   const total = getTotal();
-
+  const cartBooks = allBooks.filter((item) => cartItems[item.id] > 0);
   return (
     <div className={`container ${classes.item}`}>
       <div className={`fs-4 ${classes.lora} mt-5`}>Your Products</div>
       <div>
-        {allBooks.map((item) => {
-          if (cartItems[item.id] !== 0) {
-            return (
-              <ShoppingCartItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                author={item.author}
-                price={item.price}
-                cover={item.cover}
-              />
-            );
-          }
+        {cartBooks.map((item) => {
+          return (
+            <ShoppingCartItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              author={item.author}
+              price={item.price}
+              cover={item.cover}
+            />
+          );
         })}
       </div>
 

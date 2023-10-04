@@ -5,16 +5,20 @@ import { useContext, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const OrdersList = () => {
-  const { cartAmount, getTotal, orderItems } = useContext(ShoppingCartContext);
-  // const price = getTotal();
-  // const itemsCount = cartAmount();
+  const { cartItems, orderItems } = useContext(ShoppingCartContext);
 
   return (
     <div className={`container ${classes.item}`}>
       <div className={`fs-4 ${classes.lora} mt-5`}>Your Products</div>
       <div>
-        {orderItems.map((order) => {
-          return <OrderItem key={order.id} total={order.price} />;
+        {orderItems.map((order, index) => {
+          return (
+            <OrderItem
+              key={index}
+              total={order.totalPrice}
+              amount={order.totalQuantity}
+            />
+          );
         })}
       </div>
     </div>
