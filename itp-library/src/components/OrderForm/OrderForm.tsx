@@ -5,15 +5,21 @@ import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
 // import { OrderContext } from "../../context/OrderContext";
 const OrderForm = () => {
   const { addToOrder } = useContext(ShoppingCartContext);
+  const location = useLocation();
+  const initialOrderDetails = useMemo(() => {
+    // Retrieve initial order details from location state
+
+    return location.state ? location.state.initialOrderDetails : null;
+  }, []);
   const [inputFields, setInputFields] = useState({
     firstName: "",
     lastName: "",
