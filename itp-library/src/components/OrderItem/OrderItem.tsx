@@ -4,10 +4,12 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import cover from "../../images/book.jpg";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
   const { handleButtonValue } = useContext(ShoppingCartContext);
+  const [orderData, setOrderData] = useState({});
+
   return (
     <div className="row d-flex flex-row justify-content-between">
       <div className="col d-flex flex-row ">

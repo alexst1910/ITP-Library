@@ -12,20 +12,17 @@ import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
 // import { OrderContext } from "../../context/OrderContext";
-const OrderForm = () => {
+const OrderForm = (props: { initialOrderDetails: any }) => {
   const { addToOrder } = useContext(ShoppingCartContext);
-  const location = useLocation();
-  const initialOrderDetails = useMemo(() => {
-    // Retrieve initial order details from location state
 
-    return location.state ? location.state.initialOrderDetails : null;
-  }, []);
-  const [inputFields, setInputFields] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-  });
+  const [inputFields, setInputFields] = useState(
+    props.initialOrderDetails || {
+      firstName: "",
+      lastName: "",
+      address: "",
+      phone: "",
+    }
+  );
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -77,14 +74,14 @@ const OrderForm = () => {
       errors.phone = "Please provide a phone number";
       // errors.phoneLength = "";
     }
-    if (inputValues.phone.length < 10) {
-      errors.phoneLength = "Phone number must have a length of 10";
-    }
     if (
       inputValues.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) &&
       !/^\d+$/.test(inputValues.phone)
     ) {
       errors.phoneFormat = "Provide a valid phone format";
+    }
+    if (inputValues.phone.length < 10) {
+      errors.phoneLength = "Phone number must have a length of 10";
     }
 
     return errors;
@@ -223,7 +220,7 @@ const OrderForm = () => {
                   ? errors.phone
                   : inputFields.phone.length < 10
                   ? errors.phoneLength
-                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) &&
                     !/^\d+$/.test(inputFields.phone)
                   ? errors.phoneFormat
                   : null}
@@ -275,7 +272,7 @@ const OrderForm = () => {
                   ? errors.phone
                   : inputFields.phone.length < 10
                   ? errors.phoneLength
-                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) ||
+                  : inputFields.phone.match(/[0-9]{3}-[0-9]{3}-[0-9]{4}/) &&
                     !/^\d+$/.test(inputFields.phone)
                   ? errors.phoneFormat
                   : null}
