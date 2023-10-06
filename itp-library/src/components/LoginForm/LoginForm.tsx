@@ -17,8 +17,8 @@ const LoginForm = () => {
     passwordLength: "",
     emailFormat: "",
   });
-  // const [submitting, setSubmitting] = useState(false);
 
+  const [loginError, setLoginError] = useState("");
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -49,7 +49,17 @@ const LoginForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
-    // setSubmitting(true);s
+    const users = require("../../users.json");
+    const user = users.find(
+      (user: any) =>
+        user.email === inputFields.email &&
+        user.password === inputFields.password
+    );
+    if (user) {
+      setLoginError("");
+    } else {
+      setLoginError("User not found");
+    }
   };
   return (
     <div
@@ -108,13 +118,17 @@ const LoginForm = () => {
           </div>
           <div className="form-check ms-3 mb-5">
             <CheckBox label="Remember me?" />
-          </div>
+          </div>{" "}
           <div>
-            <LoginButton value="Log in" onClick={handleSubmit} />
-          </div>
+            <Link to="/">
+              {" "}
+              <LoginButton value="Log in" onClick={handleSubmit} />{" "}
+            </Link>
+          </div>{" "}
+          {loginError && <p className="text-danger">{loginError}</p>}
           <div className="container">
             <div className="row mb-3 ps-1">
-              <Link to="" className="text-dark">
+              <Link to="/" className="text-dark">
                 Forgot your password?
               </Link>
             </div>

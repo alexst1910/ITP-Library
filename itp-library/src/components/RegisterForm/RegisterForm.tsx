@@ -20,6 +20,8 @@ const RegisterForm = () => {
     passwordFormat: "",
   });
 
+  const [registerError, setRegisterError] = useState("");
+
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -59,15 +61,34 @@ const RegisterForm = () => {
 
     return errors;
   };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: value });
   };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
+
+    const users = require("../../users.json");
+    const userExist = users.some(
+      (user: any) => user.email === inputFields.email
+    );
+    if (userExist) {
+      setRegisterError("User already exists");
+      return;
+    }
+    const newUser = {
+      email: inputFields.email,
+      password: inputFields.password,
+    };
+    users.push(newUser);
+
+    setRegisterError("");
   };
+
   return (
     <div
       className={`container ${classes.item}  mt-0 rounded-1 
@@ -150,6 +171,7 @@ const RegisterForm = () => {
           </div>
           <div>
             <LoginButton value="Register" onClick={handleSubmit} />
+            {registerError && <p className="text-danger">{registerError}</p>}
           </div>
         </form>
       </div>
