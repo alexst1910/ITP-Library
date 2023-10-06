@@ -62,7 +62,7 @@ export const ShoppingCartProvider = ({
     };
     orderedBooks.push(allOrders);
     setOrderItems(orderedBooks);
-    setCartItems([]);
+    setCartItems(getDefaultCart(allBooks));
   };
 
   const addToCart = (id: number) => {
