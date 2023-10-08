@@ -4,8 +4,6 @@ interface Book {
   price: number;
   author: string;
   cover: string;
-  totalPrice: number;
-  totalQuantity: number;
 }
 
 export default Book;

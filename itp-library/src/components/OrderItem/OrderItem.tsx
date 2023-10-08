@@ -5,10 +5,11 @@ import cover from "../../images/book.jpg";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext, useState } from "react";
+import { order } from "../../context/ShoppingCartContext";
+
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
   const { handleButtonValue } = useContext(ShoppingCartContext);
-  const [orderData, setOrderData] = useState({});
 
   return (
     <div className="row d-flex flex-row justify-content-between">
@@ -35,7 +36,10 @@ const OrderItem = (props: { total: number; amount: number }) => {
             <button
               type="button"
               className={`btn border-0 ${classes.button} ps-3`}
-              onClick={handleButtonValue}
+              onClick={() => {
+                handleButtonValue();
+                console.log(order);
+              }}
             >
               <p className="fs-5">
                 <FontAwesomeIcon

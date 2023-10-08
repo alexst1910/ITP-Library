@@ -5,12 +5,6 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
 
 const OrderPage = () => {
-  const orderDetails = {
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-  };
   return (
     <>
       <div className={`container ${classes.item}`}>
@@ -26,7 +20,7 @@ const OrderPage = () => {
           </div>
 
           <div className="col">
-            <OrderForm initialOrderDetails={orderDetails} />
+            <OrderForm />
           </div>
         </div>
       </div>

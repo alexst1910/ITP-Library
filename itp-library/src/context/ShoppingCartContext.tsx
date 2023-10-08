@@ -8,7 +8,7 @@ type ShoppingCartContextProps = {
   cartItems: { [key: number]: number };
   getTotal: () => number;
   cartAmount: () => number;
-  orderItems: Book[];
+  orderItems: any[];
   addToOrder: () => void;
   buttonValue: string;
   handleButtonValue: () => void;
@@ -27,6 +27,16 @@ const getDefaultCart = (books: Book[]) => {
   }
   return cart;
 };
+export const order = {
+  totalPrice: 0,
+  totalQuantity: 0,
+  orderDetails: {
+    firstName: "",
+    lastName: "",
+    phone: "",
+  },
+};
+
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
@@ -42,27 +52,23 @@ export const ShoppingCartProvider = ({
 
   //order functionalities
   const addToOrder = () => {
-    let orderedBooks: Book[] = [];
-    let totalQuantity = 0;
-    let totalPrice = 0;
+    let orderedBooks: any[] = [];
 
     for (const itemID in cartItems) {
       if (cartItems[itemID] > 0) {
         let itemInfo = allBooks.find((item) => item.id === Number(itemID))!;
 
         if (itemInfo) {
-          totalQuantity += cartItems[itemID];
-          totalPrice += cartItems[itemID] * itemInfo.price;
+          order.totalQuantity += cartItems[itemID];
+          order.totalPrice += cartItems[itemID] * itemInfo.price;
         }
       }
     }
-    const allOrders: any = {
-      totalPrice,
-      totalQuantity,
-    };
-    orderedBooks.push(allOrders);
+
+    orderedBooks.push(order);
     setOrderItems(orderedBooks);
     setCartItems(getDefaultCart(allBooks));
+    console.log(orderedBooks);
   };
 
   const addToCart = (id: number) => {

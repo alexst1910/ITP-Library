@@ -8,21 +8,20 @@ import TextArea from "../FormComponents/TextArea";
 import { useEffect, useState, useContext, useMemo } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
+import { order } from "../../context/ShoppingCartContext";
 // import { OrderContext } from "../../context/OrderContext";
-const OrderForm = (props: { initialOrderDetails: any }) => {
+const OrderForm = () => {
   const { addToOrder } = useContext(ShoppingCartContext);
 
-  const [inputFields, setInputFields] = useState(
-    props.initialOrderDetails || {
-      firstName: "",
-      lastName: "",
-      address: "",
-      phone: "",
-    }
-  );
+  const [inputFields, setInputFields] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+  });
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -39,7 +38,7 @@ const OrderForm = (props: { initialOrderDetails: any }) => {
   const [countrySelectError, setCountrySelectError] = useState("");
   const [date, setDate] = useState("");
   const [dateError, setDateError] = useState("");
-  const [submitting, setSubmitting] = useState(false);
+  // const [submitting, setSubmitting] = useState(false);
 
   const { buttonValue } = useContext(ShoppingCartContext);
   const [showModal, setShowModal] = useState(false);
@@ -91,6 +90,7 @@ const OrderForm = (props: { initialOrderDetails: any }) => {
     const { name, value } = e.target;
 
     setInputFields({ ...inputFields, [name]: value });
+    order.orderDetails = { ...inputFields };
     setErrors({ ...errors, [name]: "" });
   };
 
@@ -112,7 +112,7 @@ const OrderForm = (props: { initialOrderDetails: any }) => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setErrors(validateInputs(inputFields));
-    setSubmitting(true);
+
     if (RadioOption === "") {
       setRadioOptionError("Please select a payment method");
     }
@@ -124,16 +124,6 @@ const OrderForm = (props: { initialOrderDetails: any }) => {
     }
     addToOrder();
   };
-
-  const finishSubmit = () => {
-    console.log(inputFields);
-  };
-
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && submitting) {
-      finishSubmit();
-    }
-  });
 
   return (
     <>
