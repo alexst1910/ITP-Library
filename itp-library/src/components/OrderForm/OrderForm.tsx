@@ -5,16 +5,17 @@ import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
-import { useEffect, useState, useContext, useMemo } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
 import { order } from "../../context/ShoppingCartContext";
 // import { OrderContext } from "../../context/OrderContext";
 const OrderForm = () => {
   const { addToOrder } = useContext(ShoppingCartContext);
+  const location = useLocation();
 
   const [inputFields, setInputFields] = useState({
     firstName: "",
@@ -85,7 +86,11 @@ const OrderForm = () => {
 
     return errors;
   };
-
+  useEffect(() => {
+    if (location.state && location.state.formData) {
+      setInputFields(location.state.formData);
+    }
+  }, [location.state]);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../OrderItem/OrderItem.module.css";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import cover from "../../images/book.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext, useState } from "react";
 import { order } from "../../context/ShoppingCartContext";
@@ -10,7 +10,13 @@ import { order } from "../../context/ShoppingCartContext";
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
   const { handleButtonValue } = useContext(ShoppingCartContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const handleEditOrderDetails = () => {
+    handleButtonValue();
+    navigate("/order", { state: { formData: location.state?.formData } });
+  };
   return (
     <div className="row d-flex flex-row justify-content-between">
       <div className="col d-flex flex-row ">
@@ -36,10 +42,7 @@ const OrderItem = (props: { total: number; amount: number }) => {
             <button
               type="button"
               className={`btn border-0 ${classes.button} ps-3`}
-              onClick={() => {
-                handleButtonValue();
-                console.log(order);
-              }}
+              onClick={handleEditOrderDetails}
             >
               <p className="fs-5">
                 <FontAwesomeIcon

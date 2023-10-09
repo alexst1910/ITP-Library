@@ -1,7 +1,7 @@
 import LoginButton from "../Buttons/LoginButton";
 import Input from "../FormComponents/Input";
 import classes from "../LoginForm/LoginForm.module.css";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useContext } from "react";
 
 const RegisterForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -71,22 +71,6 @@ const RegisterForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
-
-    const users = require("../../users.json");
-    const userExist = users.some(
-      (user: any) => user.email === inputFields.email
-    );
-    if (userExist) {
-      setRegisterError("User already exists");
-      return;
-    }
-    const newUser = {
-      email: inputFields.email,
-      password: inputFields.password,
-    };
-    users.push(newUser);
-
-    setRegisterError("");
   };
 
   return (
