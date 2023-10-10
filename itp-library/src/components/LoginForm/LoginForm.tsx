@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LoginButton from "../Buttons/LoginButton";
 import CheckBox from "../FormComponents/CheckBox";
 import Input from "../FormComponents/Input";
 import classes from "../LoginForm/LoginForm.module.css";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const LoginForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -46,19 +48,26 @@ const LoginForm = () => {
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
-  const handleSubmit = (e: FormEvent) => {
+  // const login = async () => {
+
+  // };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
-    const users = require("../../users.json");
-    const user = users.find(
-      (user: any) =>
-        user.email === inputFields.email &&
-        user.password === inputFields.password
-    );
-    if (user) {
-      setLoginError("");
-    } else {
-      setLoginError("User not found");
+    // login();
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        inputFields.email,
+        inputFields.password
+      );
+    } catch (error: any) {
+      if (error.code === "auth/invalid-login-credentials") {
+        setLoginError("User doesn't exist. Please register");
+      } //else if (error.code === "auth/wrong-password") {
+      //   setLoginError("Wrong password. Please try again");
+      // }
     }
   };
   return (
@@ -120,17 +129,17 @@ const LoginForm = () => {
             <CheckBox label="Remember me?" />
           </div>{" "}
           <div>
-            <Link to="/">
+            <Link to=" ">
               {" "}
               <LoginButton value="Log in" onClick={handleSubmit} />{" "}
             </Link>
           </div>{" "}
-          {loginError && <p className="text-danger">{loginError}</p>}
+          {loginError && <p className="text-danger ms-3">{loginError}</p>}
           <div className="container">
             <div className="row mb-3 ps-1">
-              <Link to="/" className="text-dark">
+              <NavLink to="/" className="text-dark">
                 Forgot your password?
-              </Link>
+              </NavLink>
             </div>
             <div className="row ps-1">
               <Link to="/register" className="text-dark">

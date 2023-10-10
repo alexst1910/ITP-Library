@@ -2,6 +2,12 @@ import LoginButton from "../Buttons/LoginButton";
 import Input from "../FormComponents/Input";
 import classes from "../LoginForm/LoginForm.module.css";
 import { ChangeEvent, FormEvent, useState, useContext } from "react";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../../firebase";
+import { Link, NavLink } from "react-router-dom";
 
 const RegisterForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -21,7 +27,11 @@ const RegisterForm = () => {
   });
 
   const [registerError, setRegisterError] = useState("");
+  // const [user, setUser]=useState({});
 
+  // onAuthStateChanged(auth, (currentUser)=>{
+  //   setUser(currentUser);
+  // })
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -67,10 +77,24 @@ const RegisterForm = () => {
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: value });
   };
+  // const register = async () => {
 
-  const handleSubmit = (e: FormEvent) => {
+  // };
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
+    // register();
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        inputFields.email,
+        inputFields.password
+      );
+    } catch (error: any) {
+      if (error.code === "auth/email-already-in-use") {
+        setRegisterError("User already exists");
+      }
+    }
   };
 
   return (
@@ -154,8 +178,14 @@ const RegisterForm = () => {
             )}
           </div>
           <div>
-            <LoginButton value="Register" onClick={handleSubmit} />
-            {registerError && <p className="text-danger">{registerError}</p>}
+            <NavLink to=" ">
+              {" "}
+              <LoginButton value="Register" onClick={handleSubmit} />
+            </NavLink>
+
+            {registerError && (
+              <p className="text-danger ms-4">{registerError}</p>
+            )}
           </div>
         </form>
       </div>
