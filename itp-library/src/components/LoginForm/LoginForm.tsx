@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import LoginButton from "../Buttons/LoginButton";
 import CheckBox from "../FormComponents/CheckBox";
 import Input from "../FormComponents/Input";
@@ -21,6 +21,7 @@ const LoginForm = () => {
   });
 
   const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -62,6 +63,7 @@ const LoginForm = () => {
         inputFields.email,
         inputFields.password
       );
+      navigate("/");
     } catch (error: any) {
       if (error.code === "auth/invalid-login-credentials") {
         setLoginError("User doesn't exist. Please register");

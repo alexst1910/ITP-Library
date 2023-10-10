@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -27,6 +27,7 @@ const RegisterForm = () => {
   });
 
   const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate();
   // const [user, setUser]=useState({});
 
   // onAuthStateChanged(auth, (currentUser)=>{
@@ -90,6 +91,7 @@ const RegisterForm = () => {
         inputFields.email,
         inputFields.password
       );
+      navigate("/");
     } catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
         setRegisterError("User already exists");
