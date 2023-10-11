@@ -11,18 +11,26 @@ import Button from "../Buttons/Button";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
-import { order } from "../../context/ShoppingCartContext";
+// import { order } from "../../context/ShoppingCartContext";
 // import { OrderContext } from "../../context/OrderContext";
+
 const OrderForm = () => {
   const { addToOrder } = useContext(ShoppingCartContext);
   const location = useLocation();
 
-  const [inputFields, setInputFields] = useState({
+  const initialInputFields = location.state?.initialInputFields || {
     firstName: "",
     lastName: "",
     address: "",
     phone: "",
-  });
+  };
+  const [inputFields, setInputFields] = useState(initialInputFields);
+
+  let orderDetails = {
+    firstName: "",
+    lastName: "",
+    phone: "",
+  };
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -48,10 +56,12 @@ const OrderForm = () => {
     e.preventDefault();
     setShowModal(true);
   };
+
   const handleCloseModal = () => {
     setShowModal(false);
     console.log("close");
   };
+
   const validateInputs = (inputValues: any) => {
     let errors = {
       firstName: "",
@@ -86,16 +96,12 @@ const OrderForm = () => {
 
     return errors;
   };
-  useEffect(() => {
-    if (location.state && location.state.formData) {
-      setInputFields(location.state.formData);
-    }
-  }, [location.state]);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setInputFields({ ...inputFields, [name]: value });
-    order.orderDetails = { ...inputFields };
+    orderDetails = { ...inputFields };
     setErrors({ ...errors, [name]: "" });
   };
 
@@ -127,6 +133,7 @@ const OrderForm = () => {
     if (date === "") {
       setDateError("Please enter the date");
     }
+
     addToOrder();
   };
 
@@ -153,10 +160,23 @@ const OrderForm = () => {
                   placeholder="First Name"
                   width="360px"
                   className="form-control mx-4"
-                  value={inputFields.firstName}
+                  value={
+                    buttonValue === "Place Order"
+                      ? inputFields.firstName
+                      : buttonValue === "Update Order"
+                      ? orderDetails.firstName
+                      : ""
+                  }
                   name="firstName"
                   onChange={handleChange}
                 />
+                {/* {buttonValue === "Place Order" ? (
+                  <p className="text-danger ms-4">{inputFields.firstName}</p>
+                ) : buttonValue === "Update Order" ? (
+                  <p className="text-danger ms-4">{inputFields.firstName}</p>
+                ) : (
+                  ""
+                )} */}
                 <p className="text-danger ms-4">{errors.firstName}</p>
               </div>
               <div className="col col-sm-12 col-lg-6">

@@ -25,4 +25,4 @@ const OrdersList = () => {
   );
 };
 
-export default Auth(OrdersList);
+export default OrdersList;

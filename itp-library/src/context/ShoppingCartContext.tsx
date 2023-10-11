@@ -27,16 +27,8 @@ const getDefaultCart = (books: Book[]) => {
   }
   return cart;
 };
-export const order = {
-  totalPrice: 0,
-  totalQuantity: 0,
-  orderDetails: {
-    firstName: "",
-    lastName: "",
-    phone: "",
-  },
-};
 
+const orderedBooks: any[] = [];
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
@@ -52,7 +44,10 @@ export const ShoppingCartProvider = ({
 
   //order functionalities
   const addToOrder = () => {
-    let orderedBooks: any[] = [];
+    const order = {
+      totalPrice: 0,
+      totalQuantity: 0,
+    };
 
     for (const itemID in cartItems) {
       if (cartItems[itemID] > 0) {

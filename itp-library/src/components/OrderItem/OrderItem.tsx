@@ -5,18 +5,15 @@ import cover from "../../images/book.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext, useState } from "react";
-import { order } from "../../context/ShoppingCartContext";
 
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
   const { handleButtonValue } = useContext(ShoppingCartContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-
+  const initialOrderData = {};
   const handleEditOrderDetails = () => {
     handleButtonValue();
-    navigate("/order", { state: { formData: location.state?.formData } });
   };
+
   return (
     <div className="row d-flex flex-row justify-content-between">
       <div className="col d-flex flex-row ">
@@ -38,7 +35,7 @@ const OrderItem = (props: { total: number; amount: number }) => {
         <div>
           <h3 className={`${classes.gold} ps-5`}>${props.total}</h3>
 
-          <Link to="/order">
+          <Link to="/order" state={{ initialOrderData }}>
             <button
               type="button"
               className={`btn border-0 ${classes.button} ps-3`}
