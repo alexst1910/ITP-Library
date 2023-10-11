@@ -22,6 +22,7 @@ const LoginForm = () => {
 
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
+  const [authenticated, setAuthenticated] = useState(false);
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -56,20 +57,20 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
-    // login();
+
     try {
       const user = await signInWithEmailAndPassword(
         auth,
         inputFields.email,
         inputFields.password
       );
+      setAuthenticated(true);
+      console.log(user);
       navigate("/");
     } catch (error: any) {
       if (error.code === "auth/invalid-login-credentials") {
         setLoginError("User doesn't exist. Please register");
-      } //else if (error.code === "auth/wrong-password") {
-      //   setLoginError("Wrong password. Please try again");
-      // }
+      }
     }
   };
   return (

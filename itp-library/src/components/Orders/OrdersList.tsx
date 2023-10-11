@@ -3,7 +3,7 @@ import classes from "../Orders/OrdersList.module.css";
 import { allBooks } from "../../assets/allBooks";
 import { useContext, useEffect } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-
+import Auth from "../Authentication/Auth";
 const OrdersList = () => {
   const { cartItems, orderItems } = useContext(ShoppingCartContext);
 
@@ -25,4 +25,4 @@ const OrdersList = () => {
   );
 };
 
-export default OrdersList;
+export default Auth(OrdersList);
