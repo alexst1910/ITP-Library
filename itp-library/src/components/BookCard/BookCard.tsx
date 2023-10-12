@@ -12,7 +12,7 @@ const BookCard = (props: {
   author: string;
   cover: string;
 }) => {
-  const { addToCart } = useContext(ShoppingCartContext);
+  const { addToCart, isAuth } = useContext(ShoppingCartContext);
   return (
     <div className="col-sm-12 col-lg-4 col-xl-3 col-xxl-2">
       <div className={`card ${classes.lora} border-0`}>
@@ -39,7 +39,9 @@ const BookCard = (props: {
           </p>
           <button
             className="btn btn-dark w-100"
-            onClick={() => addToCart(props.id)}
+            onClick={() => {
+              isAuth && addToCart(props.id);
+            }}
           >
             <span className={classes.buttontext}>Add to cart</span>
           </button>

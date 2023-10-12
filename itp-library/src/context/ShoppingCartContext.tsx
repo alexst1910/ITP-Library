@@ -1,4 +1,11 @@
-import { FormEvent, ReactNode, createContext, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 import { allBooks } from "../assets/allBooks";
 import Book from "../interfaces/book";
 
@@ -15,7 +22,30 @@ type ShoppingCartContextProps = {
   isAuth: boolean;
   handleAuth: () => void;
   signOut: () => void;
+  inputFields: any;
+  errors: any;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+
+  setInputFields: Dispatch<
+    SetStateAction<{
+      firstName: string;
+      lastName: string;
+      address: string;
+      phone: string;
+    }>
+  >;
+  setErrors: Dispatch<
+    SetStateAction<{
+      firstName: string;
+      lastName: string;
+      address: string;
+      phone: string;
+      phoneLength: string;
+      phoneFormat: string;
+    }>
+  >;
 };
+
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
 );
@@ -23,6 +53,7 @@ export const ShoppingCartContext = createContext(
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
+
 const getDefaultCart = (books: Book[]) => {
   let cart: { [key: number]: number } = {};
   for (let i = 1; i < books.length + 1; i++) {
@@ -32,6 +63,7 @@ const getDefaultCart = (books: Book[]) => {
 };
 
 const orderedBooks: any[] = [];
+
 export const ShoppingCartProvider = ({
   children,
 }: ShoppingCartProviderProps) => {
@@ -45,16 +77,43 @@ export const ShoppingCartProvider = ({
     setButtonValue("Update Order");
   };
 
+  // form inputs logic
+  const [inputFields, setInputFields] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+  });
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    phoneLength: "",
+    phoneFormat: "",
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setInputFields({ ...inputFields, [name]: value });
+
+    setErrors({ ...errors, [name]: "" });
+  };
+
   // authentication logic
   const [isAuth, setIsAuth] = useState(false);
 
   const handleAuth = () => {
     setIsAuth(true);
   };
+
   const signOut = () => {
     setIsAuth(false);
   };
+
   //order functionalities
+
   const addToOrder = () => {
     const order = {
       totalPrice: 0,
@@ -81,6 +140,7 @@ export const ShoppingCartProvider = ({
   const addToCart = (id: number) => {
     setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   };
+
   const removeFromCart = (id: number) => {
     if (cartItems[id] && cartItems[id] > 0) {
       setCartItems((prev) => ({ ...prev, [id]: prev[id] - 1 }));
@@ -99,6 +159,7 @@ export const ShoppingCartProvider = ({
     }
     return amount;
   };
+
   const getTotal = () => {
     let total = 0;
     for (const itemId in cartItems) {
@@ -127,6 +188,11 @@ export const ShoppingCartProvider = ({
         isAuth,
         handleAuth,
         signOut,
+        inputFields,
+        errors,
+        handleChange,
+        setErrors,
+        setInputFields,
       }}
     >
       {children}

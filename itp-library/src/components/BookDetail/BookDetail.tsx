@@ -9,7 +9,7 @@ const BookDetail = (props: {
   price: number;
   cover: string;
 }) => {
-  const { addToCart } = useContext(ShoppingCartContext);
+  const { addToCart, isAuth } = useContext(ShoppingCartContext);
   return (
     <div className="row me-5 mx-5">
       <div className="col-sm-6 col-lg-6 col-md-6 col-xs-0 d-none d-lg-block">
@@ -48,7 +48,9 @@ const BookDetail = (props: {
         <div>
           <button
             className="btn btn-dark w-50"
-            onClick={() => addToCart(props.id)}
+            onClick={() => {
+              isAuth && addToCart(props.id);
+            }}
           >
             <span className={classes.buttontext}>Add to cart</span>
           </button>

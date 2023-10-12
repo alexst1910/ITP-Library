@@ -8,11 +8,10 @@ import BookDetailPage from "./pages/BookDetailPages/BookDetailPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import OrderPage from "./pages/OrderPage";
-// import { OrderContextProvider } from "./context/OrderContext";
 import OrdersList from "./components/Orders/OrdersList";
-
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +51,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 function App() {
   return (
     <ShoppingCartProvider>

@@ -5,41 +5,18 @@ import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
 import Date from "../FormComponents/Date";
 import TextArea from "../FormComponents/TextArea";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
 // import { order } from "../../context/ShoppingCartContext";
 // import { OrderContext } from "../../context/OrderContext";
 
 const OrderForm = () => {
-  const { addToOrder } = useContext(ShoppingCartContext);
-  const location = useLocation();
-
-  const initialInputFields = location.state?.initialInputFields || {
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-  };
-  const [inputFields, setInputFields] = useState(initialInputFields);
-
-  let orderDetails = {
-    firstName: "",
-    lastName: "",
-    phone: "",
-  };
-
-  const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-    phoneLength: "",
-    phoneFormat: "",
-  });
+  const { addToOrder, inputFields, errors, handleChange, setErrors } =
+    useContext(ShoppingCartContext);
 
   const [RadioOption, setRadioOption] = useState("");
   const [RadioOptionError, setRadioOptionError] = useState("");
@@ -97,14 +74,6 @@ const OrderForm = () => {
     return errors;
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setInputFields({ ...inputFields, [name]: value });
-    orderDetails = { ...inputFields };
-    setErrors({ ...errors, [name]: "" });
-  };
-
   const HandleRadioOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRadioOption(e.target.value);
     setRadioOptionError("");
@@ -160,23 +129,11 @@ const OrderForm = () => {
                   placeholder="First Name"
                   width="360px"
                   className="form-control mx-4"
-                  value={
-                    buttonValue === "Place Order"
-                      ? inputFields.firstName
-                      : buttonValue === "Update Order"
-                      ? orderDetails.firstName
-                      : ""
-                  }
+                  value={inputFields.firstName}
                   name="firstName"
                   onChange={handleChange}
                 />
-                {/* {buttonValue === "Place Order" ? (
-                  <p className="text-danger ms-4">{inputFields.firstName}</p>
-                ) : buttonValue === "Update Order" ? (
-                  <p className="text-danger ms-4">{inputFields.firstName}</p>
-                ) : (
-                  ""
-                )} */}
+
                 <p className="text-danger ms-4">{errors.firstName}</p>
               </div>
               <div className="col col-sm-12 col-lg-6">

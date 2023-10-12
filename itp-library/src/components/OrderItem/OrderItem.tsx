@@ -2,15 +2,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../OrderItem/OrderItem.module.css";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import cover from "../../images/book.jpg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
-  const { handleButtonValue } = useContext(ShoppingCartContext);
-  const initialOrderData = {};
+  const { handleButtonValue, inputFields, setInputFields } =
+    useContext(ShoppingCartContext);
+
   const handleEditOrderDetails = () => {
+    setInputFields({ ...inputFields });
     handleButtonValue();
   };
 
@@ -35,7 +37,7 @@ const OrderItem = (props: { total: number; amount: number }) => {
         <div>
           <h3 className={`${classes.gold} ps-5`}>${props.total}</h3>
 
-          <Link to="/order" state={{ initialOrderData }}>
+          <Link to="/order">
             <button
               type="button"
               className={`btn border-0 ${classes.button} ps-3`}

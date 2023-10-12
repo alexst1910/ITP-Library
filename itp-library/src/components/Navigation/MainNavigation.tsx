@@ -71,7 +71,7 @@ const MainNavigation = () => {
                 <span className={classes.item}>ORDERS</span>
               </NavLink>
             </li>
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               <div className="dropdown">
                 {" "}
                 <NavLink to="/login" className={`nav-link`}>
