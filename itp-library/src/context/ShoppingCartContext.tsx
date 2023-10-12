@@ -12,6 +12,9 @@ type ShoppingCartContextProps = {
   addToOrder: () => void;
   buttonValue: string;
   handleButtonValue: () => void;
+  isAuth: boolean;
+  handleAuth: () => void;
+  signOut: () => void;
 };
 export const ShoppingCartContext = createContext(
   {} as ShoppingCartContextProps
@@ -42,6 +45,15 @@ export const ShoppingCartProvider = ({
     setButtonValue("Update Order");
   };
 
+  // authentication logic
+  const [isAuth, setIsAuth] = useState(false);
+
+  const handleAuth = () => {
+    setIsAuth(true);
+  };
+  const signOut = () => {
+    setIsAuth(false);
+  };
   //order functionalities
   const addToOrder = () => {
     const order = {
@@ -112,6 +124,9 @@ export const ShoppingCartProvider = ({
         addToOrder,
         buttonValue,
         handleButtonValue,
+        isAuth,
+        handleAuth,
+        signOut,
       }}
     >
       {children}

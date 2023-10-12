@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const RegisterForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -28,7 +29,7 @@ const RegisterForm = () => {
 
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
-  // const [user, setUser]=useState({});
+  const { handleAuth } = useContext(ShoppingCartContext);
 
   // onAuthStateChanged(auth, (currentUser)=>{
   //   setUser(currentUser);
@@ -92,6 +93,7 @@ const RegisterForm = () => {
         inputFields.password
       );
       navigate("/");
+      handleAuth();
     } catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
         setRegisterError("User already exists");

@@ -3,9 +3,10 @@ import LoginButton from "../Buttons/LoginButton";
 import CheckBox from "../FormComponents/CheckBox";
 import Input from "../FormComponents/Input";
 import classes from "../LoginForm/LoginForm.module.css";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const LoginForm = () => {
   const [inputFields, setInputFields] = useState({
@@ -22,7 +23,7 @@ const LoginForm = () => {
 
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
-  const [authenticated, setAuthenticated] = useState(false);
+  const { handleAuth } = useContext(ShoppingCartContext);
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -50,9 +51,6 @@ const LoginForm = () => {
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
-  // const login = async () => {
-
-  // };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -64,9 +62,10 @@ const LoginForm = () => {
         inputFields.email,
         inputFields.password
       );
-      setAuthenticated(true);
+
       console.log(user);
       navigate("/");
+      handleAuth();
     } catch (error: any) {
       if (error.code === "auth/invalid-login-credentials") {
         setLoginError("User doesn't exist. Please register");
@@ -93,7 +92,7 @@ const LoginForm = () => {
               placeholder="Email"
               width="550px"
               className="form-control mx-4"
-              value="alex@alex"
+              value=""
               name="email"
               onChange={handleChange}
             />
@@ -116,7 +115,7 @@ const LoginForm = () => {
               placeholder="Password"
               width="550px"
               className="form-control mx-4"
-              value="alex@alex"
+              value=""
               name="password"
               onChange={handleChange}
             />

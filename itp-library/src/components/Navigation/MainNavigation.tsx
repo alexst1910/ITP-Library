@@ -13,9 +13,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+
 const MainNavigation = () => {
   const { cartAmount } = useContext(ShoppingCartContext);
   const amount = cartAmount();
+  const { isAuth, signOut } = useContext(ShoppingCartContext);
+
   return (
     <div className="container">
       <header>
@@ -37,14 +40,14 @@ const MainNavigation = () => {
           </a>
 
           <ul className="nav justify-content-end d-none d-lg-inline-flex">
-            <li className="nav-item">
+            <li className="nav-item  d-flex align-items-center">
               <NavLink to="" className="nav-link">
                 <FontAwesomeIcon icon={faHouse} className={classes.icon} />
                 <span className={classes.item}>HOME</span>
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item d-flex align-items-center">
               {amount > 0 && (
                 <span
                   className={`position-absolute top-10 translate-middle badge rounded-pill bg-danger ${classes.badge}`}
@@ -62,17 +65,52 @@ const MainNavigation = () => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item  d-flex align-items-center">
               <NavLink to="/orders" className="nav-link">
                 <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
                 <span className={classes.item}>ORDERS</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/login" className="nav-link">
-                <FontAwesomeIcon icon={faUser} className={classes.icon} />
-                <span className={classes.item}>LOGIN</span>
-              </NavLink>
+              <div className="dropdown">
+                {" "}
+                <NavLink to="/login" className={`nav-link`}>
+                  {isAuth && (
+                    <>
+                      <button
+                        className="btn"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className={classes.icon}
+                        />
+                        <span className={classes.item}>USER</span>
+                      </button>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <button className="dropdown-item" onClick={signOut}>
+                            <FontAwesomeIcon
+                              icon={faUser}
+                              className={classes.icon}
+                            />
+                            <span className={classes.item}>LOG OUT</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </>
+                  )}
+                  {!isAuth && (
+                    <>
+                      <FontAwesomeIcon icon={faUser} className={classes.icon} />
+                      <span className={classes.item}>LOGIN</span>{" "}
+                    </>
+                  )}
+                </NavLink>
+              </div>
             </li>
           </ul>
         </nav>
