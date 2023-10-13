@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../context/ShoppingCartContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 const ShoppingCart = () => {
-  const { cartItems, getTotal } = useContext(ShoppingCartContext);
+  const { cartItems, getTotal, isAuth } = useContext(ShoppingCartContext);
   const total = getTotal();
   const cartBooks = allBooks.filter((item) => cartItems[item.id] > 0);
   return (
@@ -43,12 +43,13 @@ const ShoppingCart = () => {
             ${total}
           </div>
           <div>
-            {" "}
-            <Link to="/order">
-              <button className="btn btn-dark" style={{ width: "200px" }}>
-                Place Order
-              </button>
-            </Link>
+            {isAuth && (
+              <Link to="/order">
+                <button className="btn btn-dark" style={{ width: "200px" }}>
+                  Place Order
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

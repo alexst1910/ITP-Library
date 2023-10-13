@@ -69,6 +69,8 @@ const LoginForm = () => {
     } catch (error: any) {
       if (error.code === "auth/invalid-login-credentials") {
         setLoginError("User doesn't exist. Please register");
+      } else if (error.code === "auth/wrong-password") {
+        setLoginError("Wrong password");
       }
     }
   };
@@ -139,7 +141,7 @@ const LoginForm = () => {
           {loginError && <p className="text-danger ms-3">{loginError}</p>}
           <div className="container">
             <div className="row mb-3 ps-1">
-              <NavLink to="/" className="text-dark">
+              <NavLink to="/login" className="text-dark">
                 Forgot your password?
               </NavLink>
             </div>

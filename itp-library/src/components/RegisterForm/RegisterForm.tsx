@@ -2,12 +2,9 @@ import LoginButton from "../Buttons/LoginButton";
 import Input from "../FormComponents/Input";
 import classes from "../LoginForm/LoginForm.module.css";
 import { ChangeEvent, FormEvent, useState, useContext } from "react";
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const RegisterForm = () => {
@@ -31,9 +28,6 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const { handleAuth } = useContext(ShoppingCartContext);
 
-  // onAuthStateChanged(auth, (currentUser)=>{
-  //   setUser(currentUser);
-  // })
   const validateInputs = (inputValues: any) => {
     let errors = {
       email: "",
@@ -79,26 +73,33 @@ const RegisterForm = () => {
     setInputFields({ ...inputFields, [name]: value });
     setErrors({ ...errors, [name]: value });
   };
-  // const register = async () => {
 
-  // };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors(validateInputs(inputFields));
-    // register();
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        inputFields.email,
-        inputFields.password
-      );
-      navigate("/");
-      handleAuth();
-    } catch (error: any) {
-      if (error.code === "auth/email-already-in-use") {
-        setRegisterError("User already exists");
+
+    const passwordValidationErrors = validateInputs(inputFields);
+
+    if (
+      passwordValidationErrors.passwordFormat ||
+      passwordValidationErrors.passwordLength ||
+      passwordValidationErrors.passwordMatch
+    ) {
+      setErrors(passwordValidationErrors);
+    } else
+      try {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          inputFields.email,
+          inputFields.password
+        );
+        navigate("/");
+        handleAuth();
+      } catch (error: any) {
+        if (error.code === "auth/email-already-in-use") {
+          setRegisterError("User already exists");
+        }
       }
-    }
   };
 
   return (
@@ -182,10 +183,10 @@ const RegisterForm = () => {
             )}
           </div>
           <div>
-            <NavLink to=" ">
+            <Link to=" ">
               {" "}
               <LoginButton value="Register" onClick={handleSubmit} />
-            </NavLink>
+            </Link>
 
             {registerError && (
               <p className="text-danger ms-4">{registerError}</p>

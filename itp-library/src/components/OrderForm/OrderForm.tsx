@@ -15,7 +15,7 @@ import Modal from "../Modals/Modal";
 // import { OrderContext } from "../../context/OrderContext";
 
 const OrderForm = () => {
-  const { addToOrder, inputFields, errors, handleChange, setErrors } =
+  const { addToOrder, inputFields, errors, handleChange, setErrors, isAuth } =
     useContext(ShoppingCartContext);
 
   const [RadioOption, setRadioOption] = useState("");
@@ -124,10 +124,11 @@ const OrderForm = () => {
             </div>
             <div className="row">
               <div className="col col-sm-12 col-lg-6">
-                <Input
+                <input
                   type="text"
                   placeholder="First Name"
-                  width="360px"
+                  // width="360px"
+                  style={{ width: "360px" }}
                   className="form-control mx-4"
                   value={inputFields.firstName}
                   name="firstName"
@@ -137,10 +138,11 @@ const OrderForm = () => {
                 <p className="text-danger ms-4">{errors.firstName}</p>
               </div>
               <div className="col col-sm-12 col-lg-6">
-                <Input
+                <input
                   type="text"
                   placeholder="Last Name"
-                  width="360px"
+                  // width="360px"
+                  style={{ width: "360px" }}
                   className="form-control ms-4 mx-2"
                   value={inputFields.lastName}
                   name="lastName"
@@ -166,11 +168,12 @@ const OrderForm = () => {
             </div>
 
             <div className="row mb-1 mx-4">
-              <Input
+              <input
                 type="text"
                 placeholder="Address"
                 className="form-control"
-                width="800px"
+                // width="800px"
+                style={{ width: "800px" }}
                 name="address"
                 value={inputFields.address}
                 onChange={handleChange}
@@ -178,11 +181,12 @@ const OrderForm = () => {
               <p className="text-danger">{errors.address}</p>
             </div>
             <div className="row mb-2 mx-4">
-              <Input
+              <input
                 type="tel"
                 placeholder="Phone Number"
                 className="form-control"
-                width="800px"
+                // width="800px"
+                style={{ width: "800px" }}
                 name="phone"
                 value={inputFields.phone}
                 onChange={handleChange}
@@ -218,11 +222,12 @@ const OrderForm = () => {
             </div>
 
             <div className="row mb-1 mx-4">
-              <Input
+              <input
                 type="text"
                 placeholder="Address"
                 className="form-control"
-                width="800px"
+                // width="800px"
+                style={{ width: "800px" }}
                 name="address"
                 value={inputFields.address}
                 onChange={handleChange}
@@ -230,11 +235,12 @@ const OrderForm = () => {
               <p className="text-danger">{errors.address}</p>
             </div>
             <div className="row mb-1 mx-4">
-              <Input
+              <input
                 type="tel"
                 placeholder="Phone Number"
                 className="form-control"
-                width="800px"
+                // width="800px"
+                style={{ width: "800px" }}
                 name="phone"
                 value={inputFields.phone}
                 onChange={handleChange}
@@ -301,7 +307,7 @@ const OrderForm = () => {
               </div>
               <div>
                 {buttonValue === "Place Order" ? (
-                  <Button onClick={handleSubmit} />
+                  isAuth && <Button onClick={handleSubmit} />
                 ) : buttonValue === "Update Order" ? (
                   <Button onClick={handleShowModal} />
                 ) : null}

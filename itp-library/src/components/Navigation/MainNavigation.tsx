@@ -123,7 +123,7 @@ const MainNavigation = () => {
               </NavLink>
             </button>
             <button className="btn  btn-block  m-0">
-              <NavLink to="" className="nav-link">
+              <NavLink to="/cart" className="nav-link">
                 {" "}
                 <FontAwesomeIcon
                   icon={faCartShopping}
@@ -133,17 +133,45 @@ const MainNavigation = () => {
               </NavLink>
             </button>
             <button className="btn  btn-block m-0">
-              <NavLink to="" className="nav-link">
+              <NavLink to="/orders" className="nav-link">
                 {" "}
                 <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
                 <span className={classes.item}>ORDERS</span>
               </NavLink>
             </button>
             <button className="btn  btn-block m-0">
-              <NavLink to="" className="nav-link">
-                {" "}
-                <FontAwesomeIcon icon={faUser} className={classes.icon} />
-                <span className={classes.item}>LOGIN</span>
+              <NavLink to="login" className="nav-link">
+                {isAuth && (
+                  <>
+                    <button
+                      className="btn"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <FontAwesomeIcon icon={faUser} className={classes.icon} />
+                      <span className={classes.item}>USER</span>
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <button className="dropdown-item" onClick={signOut}>
+                          <FontAwesomeIcon
+                            icon={faUser}
+                            className={classes.icon}
+                          />
+                          <span className={classes.item}>LOG OUT</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </>
+                )}
+                {!isAuth && (
+                  <>
+                    <FontAwesomeIcon icon={faUser} className={classes.icon} />
+                    <span className={classes.item}>LOGIN</span>{" "}
+                  </>
+                )}
               </NavLink>
             </button>
           </div>
