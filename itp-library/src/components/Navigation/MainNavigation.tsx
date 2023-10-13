@@ -65,12 +65,17 @@ const MainNavigation = () => {
               </NavLink>
             </li>
 
-            <li className="nav-item  d-flex align-items-center">
-              <NavLink to="/orders" className="nav-link">
-                <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
-                <span className={classes.item}>ORDERS</span>
-              </NavLink>
-            </li>
+            {isAuth && (
+              <li className="nav-item  d-flex align-items-center">
+                <NavLink to="/orders" className="nav-link">
+                  <FontAwesomeIcon
+                    icon={faTruckFast}
+                    className={classes.icon}
+                  />
+                  <span className={classes.item}>ORDERS</span>
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item d-flex align-items-center">
               <div className="dropdown">
                 {" "}
@@ -134,9 +139,15 @@ const MainNavigation = () => {
             </button>
             <button className="btn  btn-block m-0">
               <NavLink to="/orders" className="nav-link">
-                {" "}
-                <FontAwesomeIcon icon={faTruckFast} className={classes.icon} />
-                <span className={classes.item}>ORDERS</span>
+                {isAuth && (
+                  <>
+                    <FontAwesomeIcon
+                      icon={faTruckFast}
+                      className={classes.icon}
+                    />
+                    <span className={classes.item}>ORDERS</span>
+                  </>
+                )}
               </NavLink>
             </button>
             <button className="btn  btn-block m-0">
