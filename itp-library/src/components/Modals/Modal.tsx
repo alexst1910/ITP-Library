@@ -2,12 +2,16 @@ import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../Modals/Modal.module.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 interface ModalProps {
   show: boolean;
   onClose: () => void;
 }
+
 const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
+  const { setButtonValue } = useContext(ShoppingCartContext);
   return (
     <>
       {/* <button
@@ -51,14 +55,20 @@ const Modal: React.FC<ModalProps> = ({ show, onClose }) => {
               Confirm order detail changes?
             </div>
             <div className="modal-footer border-0">
-              <button
-                type="button"
-                className={`btn border-dark ${classes.buttonText}`}
-                data-bs-dismiss="modal"
-                onClick={onClose}
-              >
-                Close
-              </button>
+              <Link to="/orders">
+                {" "}
+                <button
+                  type="button"
+                  className={`btn border-dark ${classes.buttonText}`}
+                  data-bs-dismiss="modal"
+                  onClick={() => {
+                    onClose();
+                    // setButtonValue("Place Order");
+                  }}
+                >
+                  Close
+                </button>
+              </Link>
               <Link to="/orders">
                 <button
                   type="button"

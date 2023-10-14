@@ -1,5 +1,5 @@
 import classes from "../OrderForm/OrderForm.module.css";
-import Input from "../FormComponents/Input";
+
 import Select from "../FormComponents/Select";
 import CheckBox from "../FormComponents/CheckBox";
 import Radio from "../FormComponents/Radio";
@@ -15,8 +15,15 @@ import Modal from "../Modals/Modal";
 // import { OrderContext } from "../../context/OrderContext";
 
 const OrderForm = () => {
-  const { addToOrder, inputFields, errors, handleChange, setErrors, isAuth } =
-    useContext(ShoppingCartContext);
+  const {
+    addToOrder,
+    inputFields,
+    errors,
+    handleChange,
+    setErrors,
+    isAuth,
+    setButtonValue,
+  } = useContext(ShoppingCartContext);
 
   const [RadioOption, setRadioOption] = useState("");
   const [RadioOptionError, setRadioOptionError] = useState("");
@@ -36,7 +43,7 @@ const OrderForm = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    console.log("close");
+    setButtonValue("Place Order");
   };
 
   const validateInputs = (inputValues: any) => {
@@ -300,6 +307,7 @@ const OrderForm = () => {
                   <button
                     className="btn border-dark ms-4 mb-5"
                     style={{ width: "250px" }}
+                    onClick={() => setButtonValue("Place Order")}
                   >
                     <span className={classes.buttontext}>Cancel Order</span>
                   </button>

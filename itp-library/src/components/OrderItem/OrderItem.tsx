@@ -8,12 +8,12 @@ import { useContext } from "react";
 
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
-  const { handleButtonValue, inputFields, setInputFields } =
+  const { setButtonValue, inputFields, setInputFields } =
     useContext(ShoppingCartContext);
 
   const handleEditOrderDetails = () => {
     setInputFields({ ...inputFields });
-    handleButtonValue();
+    setButtonValue("Update Order");
   };
 
   return (

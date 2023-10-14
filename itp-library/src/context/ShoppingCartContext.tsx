@@ -18,7 +18,7 @@ type ShoppingCartContextProps = {
   orderItems: any[];
   addToOrder: () => void;
   buttonValue: string;
-  handleButtonValue: () => void;
+
   isAuth: boolean;
   handleAuth: () => void;
   signOut: () => void;
@@ -44,6 +44,8 @@ type ShoppingCartContextProps = {
       phoneFormat: string;
     }>
   >;
+
+  setButtonValue: Dispatch<SetStateAction<string>>;
 };
 
 export const ShoppingCartContext = createContext(
@@ -72,10 +74,6 @@ export const ShoppingCartProvider = ({
 
   // place order button functionalities
   const [buttonValue, setButtonValue] = useState("Place Order");
-
-  const handleButtonValue = () => {
-    setButtonValue("Update Order");
-  };
 
   // form inputs logic
   const [inputFields, setInputFields] = useState({
@@ -184,7 +182,6 @@ export const ShoppingCartProvider = ({
         orderItems,
         addToOrder,
         buttonValue,
-        handleButtonValue,
         isAuth,
         handleAuth,
         signOut,
@@ -193,6 +190,7 @@ export const ShoppingCartProvider = ({
         handleChange,
         setErrors,
         setInputFields,
+        setButtonValue,
       }}
     >
       {children}
