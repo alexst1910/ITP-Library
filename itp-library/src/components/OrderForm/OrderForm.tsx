@@ -164,11 +164,19 @@ const OrderForm = () => {
               </label>
             </div>
             <div className="row mb-3 mx-4">
-              <Select
-                placeholder="Country Selection"
-                name="select"
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="country select"
                 onChange={CountryOptionChange}
-              />{" "}
+              >
+                <option defaultValue="Country Selection">
+                  Country Selection
+                </option>
+                <option value="1">Romania</option>
+                <option value="2">United Kingdom</option>
+                <option value="3">United States</option>
+              </select>
               {countrySelectError && (
                 <p className="text-danger mb-0">{countrySelectError}</p>
               )}
@@ -218,11 +226,19 @@ const OrderForm = () => {
               </label>
             </div>
             <div className="row mb-3 mx-4">
-              <Select
-                placeholder="Country Selection"
-                name="select"
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="country select"
                 onChange={CountryOptionChange}
-              />{" "}
+              >
+                <option defaultValue="Country Selection">
+                  Country Selection
+                </option>
+                <option value="1">Romania</option>
+                <option value="2">United Kingdom</option>
+                <option value="3">United States</option>
+              </select>
               {countrySelectError && (
                 <p className="text-danger">{countrySelectError}</p>
               )}
@@ -282,7 +298,13 @@ const OrderForm = () => {
               </label>
             </div>
             <div className="row mb-3 mx-4">
-              <Date placeholder="Delivery Date" onChange={HandleDateChange} />
+              {/* <Date placeholder="Delivery Date" onChange={HandleDateChange} /> */}
+              <input
+                type="date"
+                className="form-control"
+                placeholder="Delivery Date"
+                onChange={HandleDateChange}
+              />
               {dateError && <p className="text-danger">{dateError}</p>}
             </div>
             <div className="d-flex justify-content-start mt-4 ps-4">

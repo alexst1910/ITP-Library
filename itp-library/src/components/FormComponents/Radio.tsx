@@ -1,4 +1,5 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 const RadioDetails = [
   {
     id: "flexRadioDefault1",
@@ -12,6 +13,7 @@ const RadioDetails = [
 const Radio = (props: {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
+  const { inputFields } = useContext(ShoppingCartContext);
   return (
     <>
       {RadioDetails.map((radio) => {
