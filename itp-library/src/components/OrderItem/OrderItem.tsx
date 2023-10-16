@@ -8,11 +8,23 @@ import { useContext } from "react";
 
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);
-  const { setButtonValue, inputFields, setInputFields } =
-    useContext(ShoppingCartContext);
+  const {
+    setButtonValue,
+    inputFields,
+    setInputFields,
+    RadioOption,
+    setRadioOption,
+    countryOption,
+    setCountryOption,
+    date,
+    setDate,
+  } = useContext(ShoppingCartContext);
 
   const handleEditOrderDetails = () => {
     setInputFields({ ...inputFields });
+    setRadioOption(RadioOption);
+    setCountryOption(countryOption);
+    setDate(date);
     setButtonValue("Update Order");
   };
 

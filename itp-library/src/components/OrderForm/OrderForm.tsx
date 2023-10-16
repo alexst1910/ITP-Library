@@ -8,11 +8,9 @@ import TextArea from "../FormComponents/TextArea";
 import { useState, useContext } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import Button from "../Buttons/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
-// import { order } from "../../context/ShoppingCartContext";
-// import { OrderContext } from "../../context/OrderContext";
 
 const OrderForm = () => {
   const {
@@ -23,14 +21,21 @@ const OrderForm = () => {
     setErrors,
     isAuth,
     setButtonValue,
+    RadioOption,
+    setRadioOption,
+    countryOption,
+    setCountryOption,
+    date,
+    dateError,
+    HandleDateChange,
+    setDateError,
   } = useContext(ShoppingCartContext);
 
-  const [RadioOption, setRadioOption] = useState("");
+  const isSelectedRadio = (value: string): boolean => RadioOption === value;
+
   const [RadioOptionError, setRadioOptionError] = useState("");
-  const [countryOption, setCountryOption] = useState("");
   const [countrySelectError, setCountrySelectError] = useState("");
-  const [date, setDate] = useState("");
-  const [dateError, setDateError] = useState("");
+
   // const [submitting, setSubmitting] = useState(false);
 
   const { buttonValue } = useContext(ShoppingCartContext);
@@ -82,18 +87,14 @@ const OrderForm = () => {
   };
 
   const HandleRadioOptionChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setRadioOption(e.target.value);
+    setRadioOption(e.currentTarget.value);
+
     setRadioOptionError("");
   };
 
   const CountryOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setCountryOption(e.target.value);
     setCountrySelectError("");
-  };
-
-  const HandleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-    setDateError("");
   };
 
   const handleSubmit = (event: FormEvent) => {
@@ -285,8 +286,38 @@ const OrderForm = () => {
               </label>
             </div>
             <div className="form-check-inline ms-4 mb-3">
-              <Radio onChange={HandleRadioOptionChange} />
+              {/* <Radio onChange={HandleRadioOptionChange} /> */}
+              <input
+                className="form-check-input"
+                type="radio"
+                id="flexRadioDefault1"
+                value="online"
+                name="payment"
+                onChange={HandleRadioOptionChange}
+                checked={isSelectedRadio("online")}
+              />
+              <label
+                className="form-check-label ms-3 me-4"
+                htmlFor="flexRadioDefault1"
+              >
+                online
+              </label>
 
+              <input
+                className="form-check-input"
+                type="radio"
+                id="flexRadioDefault2"
+                value="cash"
+                name="payment"
+                checked={isSelectedRadio("cash")}
+                onChange={HandleRadioOptionChange}
+              />
+              <label
+                className="form-check-label ms-3 me-4"
+                htmlFor="flexRadioDefault1"
+              >
+                cash
+              </label>
               {RadioOptionError && (
                 <p className="text-danger">{RadioOptionError}</p>
               )}

@@ -18,14 +18,17 @@ type ShoppingCartContextProps = {
   orderItems: any[];
   addToOrder: () => void;
   buttonValue: string;
-
   isAuth: boolean;
   handleAuth: () => void;
   signOut: () => void;
   inputFields: any;
   errors: any;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-
+  date: string;
+  RadioOption: string;
+  countryOption: any;
+  dateError: string;
+  HandleDateChange: (e: ChangeEvent<HTMLInputElement>) => void;
   setInputFields: Dispatch<
     SetStateAction<{
       firstName: string;
@@ -46,6 +49,10 @@ type ShoppingCartContextProps = {
   >;
 
   setButtonValue: Dispatch<SetStateAction<string>>;
+  setRadioOption: Dispatch<SetStateAction<string>>;
+  setCountryOption: Dispatch<SetStateAction<string>>;
+  setDate: Dispatch<SetStateAction<string>>;
+  setDateError: Dispatch<SetStateAction<string>>;
 };
 
 export const ShoppingCartContext = createContext(
@@ -90,6 +97,10 @@ export const ShoppingCartProvider = ({
     phoneLength: "",
     phoneFormat: "",
   });
+  const [RadioOption, setRadioOption] = useState("");
+  const [countryOption, setCountryOption] = useState("");
+  const [date, setDate] = useState("");
+  const [dateError, setDateError] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -97,6 +108,10 @@ export const ShoppingCartProvider = ({
     setInputFields({ ...inputFields, [name]: value });
 
     setErrors({ ...errors, [name]: "" });
+  };
+  const HandleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
+    setDateError("");
   };
 
   // authentication logic
@@ -191,6 +206,15 @@ export const ShoppingCartProvider = ({
         setErrors,
         setInputFields,
         setButtonValue,
+        RadioOption,
+        setRadioOption,
+        countryOption,
+        setCountryOption,
+        date,
+        setDate,
+        dateError,
+        setDateError,
+        HandleDateChange,
       }}
     >
       {children}

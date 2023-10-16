@@ -13,7 +13,6 @@ const RadioDetails = [
 const Radio = (props: {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => {
-  const { inputFields } = useContext(ShoppingCartContext);
   return (
     <>
       {RadioDetails.map((radio) => {
