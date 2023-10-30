@@ -8,6 +8,7 @@ import {
 } from "react";
 import { allBooks } from "../assets/allBooks";
 import Book from "../interfaces/book";
+import React from "react";
 
 type ShoppingCartContextProps = {
   addToCart: (id: number) => void;

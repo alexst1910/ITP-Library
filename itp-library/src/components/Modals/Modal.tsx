@@ -4,7 +4,7 @@ import classes from "../Modals/Modal.module.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-
+import React from "react";
 interface ModalProps {
   show: boolean;
   onClose: () => void;

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext } from "react";
+import React from "react";
 
 const BookCard = (props: {
   id: number;

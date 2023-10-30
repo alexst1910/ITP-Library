@@ -3,7 +3,7 @@ import classes from "../ShoppingCartItem/ShoppingCartItem.module.css";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-
+import React from "react";
 const ShoppingCartItem = (props: {
   id: number;
   title: string;

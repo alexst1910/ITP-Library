@@ -1,3 +1,4 @@
+import React from "react";
 const CheckBox = (props: { label: string }) => {
   return (
     <>

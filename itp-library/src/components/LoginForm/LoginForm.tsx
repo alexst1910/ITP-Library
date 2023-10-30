@@ -7,6 +7,7 @@ import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import React from "react";
 
 const LoginForm = () => {
   const [inputFields, setInputFields] = useState({

@@ -1,6 +1,7 @@
 import LoginForm from "../components/LoginForm/LoginForm";
 import classes from "../pages/LoginPage.module.css";
 import cover from "../images/library.jpg";
+import React from "react";
 const LoginPage = () => {
   return (
     <div className={`container ${classes.item}`}>

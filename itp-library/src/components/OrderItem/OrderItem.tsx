@@ -5,6 +5,7 @@ import cover from "../../images/book.jpg";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext } from "react";
+import React from "react";
 
 const OrderItem = (props: { total: number; amount: number }) => {
   const orderNumber = Math.floor(Math.random() * 1000);

@@ -1,6 +1,7 @@
 import classes from "../pages/LoginPage.module.css";
 import cover from "../images/library.jpg";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
+import React from "react";
 const RegisterPage = () => {
   return (
     <div className={`container ${classes.item}`}>

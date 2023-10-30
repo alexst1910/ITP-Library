@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
-
+import React from "react";
 const RegisterForm = () => {
   const [inputFields, setInputFields] = useState({
     email: "",

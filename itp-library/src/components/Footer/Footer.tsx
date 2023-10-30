@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from "../Footer/Footer.module.css";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-
+import React from "react";
 const Footer = () => {
   let copyright = String.fromCodePoint(169);
 

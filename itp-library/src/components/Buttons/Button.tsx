@@ -1,4 +1,5 @@
 import { ChangeEvent, MouseEventHandler, useContext } from "react";
+import React from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 
 const Button = (props: { onClick: MouseEventHandler<HTMLButtonElement> }) => {

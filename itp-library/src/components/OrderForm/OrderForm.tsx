@@ -11,8 +11,9 @@ import Button from "../Buttons/Button";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import Modal from "../Modals/Modal";
+import React from "react";
 
-const OrderForm = () => {
+const OrderForm: React.FC = () => {
   const {
     addToOrder,
     inputFields,

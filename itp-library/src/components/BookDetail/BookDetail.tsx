@@ -2,6 +2,7 @@ import classes from "../BookDetail/BookDetail.module.css";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { useContext } from "react";
+import React from "react";
 const BookDetail = (props: {
   id: number;
   title: string;

@@ -1,3 +1,4 @@
+import React from "react";
 const TextArea = (props: { rows: number; placeholder: string }) => {
   return (
     <textarea

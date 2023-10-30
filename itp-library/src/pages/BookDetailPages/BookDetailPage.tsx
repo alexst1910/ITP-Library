@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import BookDetail from "../../components/BookDetail/BookDetail";
 import classes from "../BookDetailPages/BookDetailPage.module.css";
 import { allBooks } from "../../assets/allBooks";
+import React from "react";
+
 const BookDetailPage = () => {
   const { id } = useParams();
 

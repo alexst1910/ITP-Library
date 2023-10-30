@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-
+import React from "react";
 const Input = (props: {
   type: string;
   placeholder: string;

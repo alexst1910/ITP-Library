@@ -1,5 +1,6 @@
 // import CarouselItemData from "../../interfaces/carouselItemData";
 import classes from "../CarouselItem/CarouselItem.module.css";
+import React from "react";
 const CarouselItem = (props: {
   title: string;
   description: string;

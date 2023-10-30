@@ -1,6 +1,6 @@
 import CarouselItemData from "../../interfaces/carouselItemData";
 import CarouselItem from "../CarouselItem/CarouselItem";
-
+import React from "react";
 const Carousel = (props: { items: CarouselItemData[] }) => {
   return (
     <div

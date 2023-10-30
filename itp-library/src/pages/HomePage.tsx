@@ -7,7 +7,7 @@ import {
   SectionTwo,
 } from "../assets/BookDetails";
 import Carousel from "../components/Carousel/Carousel";
-
+import React from "react";
 const HomePage: React.FC = () => {
   return (
     <div className="container">

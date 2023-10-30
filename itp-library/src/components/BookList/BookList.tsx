@@ -1,6 +1,6 @@
 import BookCard from "../BookCard/BookCard";
 import Book from "../../interfaces/book";
-
+import React from "react";
 //props.cards is an array of object where each object is a book with properties
 const BookList = (props: { cards: Book[]; section: string }) => {
   return (
